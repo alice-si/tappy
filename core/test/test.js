@@ -10,111 +10,75 @@ const expect =
   .use(require('chai-bn')(BN))
   .expect;
 
-const Building = artifacts.require('Building');
+const Manager = artifacts.require('Manager');
 const Token = artifacts.require('Token');
 
-contract('Building', ([owner, tenant]) => {
-  const RENT = 10;
-  const INSTANT_CASH = 2;
-  const SAVINGS_BONUS = 3;
+contract('Building', ([owner, loader, unLoader]) => {
 
   let token;
-  let building;
+  let manager;
 
-  beforeEach(async () => {
+  let CARD_ID = "card-id";
+  let CARD_PASS = "doggy";
+
+  let prepareHash = function(cardId, cardPass) {
+    return web3.utils.soliditySha3(web3.eth.abi.encodeParameters(['string', 'string'],
+      [cardId, cardPass]
+    ));
+  };
+
+  before(async () => {
     token = await Token.new({from: owner});
-    await token.mint(owner, 9001);
-
-    building = await Building.new(
-      token.address, INSTANT_CASH, SAVINGS_BONUS, {from: owner});
-    await token.approve(building.address, 100);
-    await building.payIn(100);
+    manager = await Manager.new(token.address, {from: owner});
   });
 
-  it('should allow access to creationTime', async () => {
-    let minuteAgo = new Date();
-    minuteAgo.setMinutes(minuteAgo.getMinutes() - 1);
+  it('should load manager contract', async () => {
+    await token.mint(manager.address, 100);
 
-    let minuteAfter = new Date();
-    minuteAfter.setMinutes(minuteAfter.getMinutes() + 1);
+    let available = await manager.getAvailableAssets();
 
-    let creationTime = new Date(await building.creationTime() * 1000);
-    expect(creationTime).to.be.above(minuteAgo);
-    expect(creationTime).to.be.below(minuteAfter);
+    expect(available).to.be.a.bignumber.that.equals('100');
   });
 
-  it('should return zero savings for newly added tenants', async () => {
-    await building.onboardTenant(tenant, {from: owner});
-    expect(await building.getSavings(tenant))
-      .to.be.a.bignumber.that.equals('0');
+  it('should add loader account', async () => {
+    let isLoaderBefore = await manager.checkIsLoader(loader);
+    expect(isLoaderBefore).to.equal(false);
+
+    await manager.addLoader(loader);
+
+    let isLoaderAfter = await manager.checkIsLoader(loader);
+    expect(isLoaderAfter).to.equal(true);
   });
 
-  it('should only allow owner to onboard tenants', async () => {
-    await expect(building.onboardTenant(tenant, {from: tenant}))
-      .to.be.rejected;
+  it('should load a card', async () => {
+    await manager.load(prepareHash(CARD_ID, CARD_PASS), 10, {from: loader});
+
+    let available = await manager.getAvailableAssets();
+    expect(available).to.be.a.bignumber.that.equals('90');
   });
 
-  it('should transfer cash to tenant after claim is submitted',
-    async () =>
-  {
-    let balanceBefore = await token.balanceOf(tenant);
+  it('should add unLoader account', async () => {
+    let isUnLoaderBefore = await manager.checkIsUnLoader(unLoader);
+    expect(isUnLoaderBefore).to.equal(false);
 
-    await building.onboardTenant(tenant, {from: owner});
-    await building.claimOutcome(0, /* INSTANT_CASH */ 0, {from: tenant});
+    await manager.addUnLoader(unLoader);
 
-    let balanceAfter = await token.balanceOf(tenant);
-    expect(balanceAfter - balanceBefore).to.equal(INSTANT_CASH);
+    let isUnLoaderAfter = await manager.checkIsUnLoader(unLoader);
+    expect(isUnLoaderAfter).to.equal(true);
   });
 
-  it('should emit an event when instant cash is transferred', async () => {
-    await building.onboardTenant(tenant, {from: owner});
-    let tx = await building.claimOutcome(0, /* INSTANT_CASH */ 0, {from: tenant});
+  it('should unLoad a card', async () => {
+    let unLoaderBefore = await token.balanceOf(unLoader);
+    expect(unLoaderBefore).to.be.a.bignumber.that.equals('0');
+    let managerBefore = await token.balanceOf(manager.address);
+    expect(managerBefore).to.be.a.bignumber.that.equals('100');
 
-    truffleAssert.eventEmitted(tx, 'OutcomeAchieved', ev => {
-      return ev.tenant == tenant
-        && ev.period.eq(new BN(0))
-        && ev.instantCash.eq(new BN(INSTANT_CASH))
-        && ev.savingsBonus.eq(new BN(0));
-    });
+    await manager.unLoad(CARD_ID, CARD_PASS, {from: unLoader});
+
+    let unLoaderAfter = await token.balanceOf(unLoader);
+    expect(unLoaderAfter).to.be.a.bignumber.that.equals('10');
+    let managerAfter = await token.balanceOf(manager.address);
+    expect(managerAfter).to.be.a.bignumber.that.equals('90');
   });
 
-  it('should increase savings after claim is submitted',
-    async () =>
-  {
-    await building.onboardTenant(tenant, {from: owner});
-    await building.claimOutcome(0, /* SAVINGS_BONUS */ 1, {from: tenant});
-
-    expect(await building.getSavings(tenant))
-      .to.be.a.bignumber.that.equals(new BN(SAVINGS_BONUS));
-  });
-
-  it('should emit an event when savings are increased', async () => {
-    await building.onboardTenant(tenant, {from: owner});
-    let tx = await building.claimOutcome(0, /* SAVINGS_BONUS */ 1, {from: tenant});
-
-    truffleAssert.eventEmitted(tx, 'OutcomeAchieved', ev => {
-      return ev.tenant == tenant
-        && ev.period.eq(new BN(0))
-        && ev.instantCash.eq(new BN(0))
-        && ev.savingsBonus.eq(new BN(SAVINGS_BONUS));
-    });
-  });
-
-  it('should not allow claiming twice during a single period', async () => {
-    await building.onboardTenant(tenant, {from: owner});
-    await building.claimOutcome(0, /* INSTANT_CASH */ 0, {from: tenant});
-    await expect(building.claimOutcome(0, /* INSTANT_CASH */ 0, {from: tenant}))
-      .to.be.rejected;
-  });
-
-  it('should transfer all savings to tenant after cash out', async () => {
-    let balanceBefore = await token.balanceOf(tenant);
-
-    await building.onboardTenant(tenant, {from: owner});
-    await building.claimOutcome(0, /* SAVINGS_BONUS */ 1, {from: tenant});
-    await building.cashOut({from: tenant});
-
-    let balanceAfter = await token.balanceOf(tenant);
-    expect(balanceAfter - balanceBefore).to.equal(SAVINGS_BONUS);
-  });
 });

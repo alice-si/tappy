@@ -7,9 +7,11 @@
     "test": "jest"
   },
   "dependencies": {
+    "ethers": "^4.0.27",
     "react": "16.8.3",
     "react-native": "0.59.8",
-    "react-native-nfc-manager": "^1.2.2"
+    "react-native-nfc-manager": "^1.2.2",
+    "truffle-hdwallet-provider": "^1.0.9"
   },
   "devDependencies": {
     "@babel/core": "^7.4.4",
