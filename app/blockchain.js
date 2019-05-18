@@ -1,32 +1,34 @@
 import { ethers } from 'ethers';
 import CryptoJS from 'crypto-js';
-import { HDWalletProvider} from 'truffle-hdwallet-provider';
+import managerContractJson from './contracts/Manager.json';
 
+const MANAGER_CONTRACT_ADDRESS = '0x0';
+const DEFAULT_AMOUNT = 10;
+const PRIVATE_KEY = '0xA88259AE882B0A60D82FD00F809078512A1F16285D0ED9824F5C2D516C26EFB3';
 
-function Blockchain() {
+const provider = new ethers.providers.InfuraProvider('kovan', '154fbc552a454311855d44e1e73ea46a')
+const wallet = (new ethers.Wallet(PRIVATE_KEY)).connect(provider);
+const signer = provider.getSigner();
+const contract = new ethers.Contract(
+  MANAGER_CONTRACT_ADDRESS, managerContractJson.abi, signer);
 
-  const provider = new HDWalletProvider(
-    'turtle enforce elbow glow trap garbage private maximum sail hole wire half',
-    'https://kovan.infura.io/v3/154fbc552a454311855d44e1e73ea46a',
-  );
+const Blockchain = {
 
-  function getHash(cardId) {
-    // TODO alex remove
-    return btoa('123' + cardId + '123')
+  prepareHash(cardId, cardPass) {
+    return CryptoJS.MD5(cardId + cardPass + 'kindofsalt').toString();
+  },
 
-    // TODO alex uncomment
-    // return CryptoJS.MD5(cardId + 'kindofsalt').toString();
+  async load(cardId, cardPass) {
+    const hash = this.prepareHash(cardId, cardPass)
+    await contract.load(hash, DEFAULT_AMOUNT)
+    // return hash
+  },
+
+  async unload(cardId) {
+    const hash = getHash(cardId);
+    await contract.unload(hash, DEFAULT_AMOUNT)
   }
 
-  this.load = async function(cardId) {
-    const hash = getHash(cardId);
-    // TODO send load transaction 
-  };
+};
 
-  this.unload = async function(cardId) {
-    const hash = getHash(cardId);
-    // TODO send unload transaction 
-  };
-}
-
-module.exports = Blockchain;
+export default Blockchain;

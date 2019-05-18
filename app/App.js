@@ -1,6 +1,7 @@
 // It must be at the top (at least before web3)
 import './global';
 
+import Blockchain from './blockchain';
 import Web3 from 'web3';
 import React, { Component } from 'react';
 import {
@@ -56,7 +57,9 @@ class App extends Component {
                 }
             })
 
-        this._checkWeb3();
+        // this._checkWeb3();
+
+        this._checkBlockchainModule();
     }
 
     componentWillUnmount() {
@@ -66,13 +69,14 @@ class App extends Component {
     }
 
     render() {
-        let { supported, enabled, tag, isWriting, urlToWrite, parsedText, rtdType, lastBlockNumber, msg } = this.state;
+        let { supported, enabled, tag, isWriting, urlToWrite, parsedText, rtdType, lastBlockNumber, msg, blockchain } = this.state;
         return (
             <ScrollView style={{flex: 1}}>
                 { Platform.OS === 'ios' && <View style={{ height: 60 }} /> }
 
                 <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
                     <Text>{`Msg: ${msg}`}</Text>
+                    <Text>{`Blockchain: ${blockchain}`}</Text>
                     <Text>{`WEB3 Stats: ${lastBlockNumber}`}</Text>
 
                     <Text>{`Is NFC supported sadhfj ALEX ? ${supported}`}</Text>
@@ -203,6 +207,14 @@ class App extends Component {
             prevThis.setState({'lastBlockNumber': JSON.stringify(result.number)})
         }).catch(err => {
             prevThis.setState({msg: 'Error'})
+        })
+    }
+
+    _checkBlockchainModule(cardId) {
+        let prevThis = this
+        const tempPass = 'tmp'
+        Blockchain.load(cardId, tempPass).then((res) => {
+            prevThis.setState({blockchain: 'sent'})
         })
     }
 
