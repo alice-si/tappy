@@ -60,6 +60,18 @@ module.exports = {
       from: '0x55DbDAB581c4D5318901e9e35608444Cc2A3142d',
       skipDryRun: true,
     },
+    skale: {
+      provider: function() {
+        return new HDWalletProvider(
+          mnemonic,
+          'http://157.230.154.5:8046/'
+        );
+      },
+      network_id: '*',
+      gas: 0,
+      from: '0x55DbDAB581c4D5318901e9e35608444Cc2A3142d',
+      skipDryRun: true,
+    },
   },
 
   // Set default mocha options here, use special reporters etc.
