@@ -214,26 +214,17 @@ class App extends Component {
     _checkBlockchainModule(cardId, cardPass) {
         let prevThis = this
 
-        // Blockchain.load(cardId, cardPass).then((res) => {
-        //     prevThis.setState({blockchain: prevThis.state.blockchain + 'sent' + JSON.stringify(res)})
-        // }).catch(function(err) {
-        //     prevThis.setState({blockchain: prevThis.state.blockchain + 'err: ' + err})
-        // })
-
         Blockchain.unload(cardId, cardPass).then((res) => {
             prevThis.setState({blockchain: prevThis.state.blockchain + 'sent' + JSON.stringify(res)})
         }).catch(function(err) {
             prevThis.setState({blockchain: prevThis.state.blockchain + 'err: ' + err})
         })
-    }
 
-    _checkBlockchainModule(cardId, cardPass) {
-        let prevThis = this
-        Blockchain.load(cardId, cardPass).then((res) => {
-            prevThis.setState({blockchain: 'sent'})
-        }).catch(function(err) {
-            prevThis.setState({blockchain: 'err: ' + err})
-        })
+        // Blockchain.load(cardId, cardPass).then((res) => {
+        //     prevThis.setState({blockchain: prevThis.state.blockchain + 'sent' + JSON.stringify(res)})
+        // }).catch(function(err) {
+        //     prevThis.setState({blockchain: prevThis.state.blockchain + 'err: ' + err})
+        // })
     }
 
     _requestAndroidBeam = () => {

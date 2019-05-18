@@ -27,7 +27,7 @@ export default {
       })
     })
 
-    contract.on(unLoadedFilter, (address, hash, valu, timestamp) => {
+    contract.on(unLoadedFilter, (address, hash, value, timestamp) => {
       cb({
         type: 'Card unloaded',
         agent: address,
