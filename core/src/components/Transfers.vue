@@ -22,7 +22,7 @@
         </tr>
         <Transfer
           v-for="transfer in transfers"
-          v-bind:key="JSON.stringify(transfer)"
+          v-bind:key="transfer.timestamp"
           v-bind:details="transfer"
         />
       </table>
@@ -45,11 +45,11 @@ export default {
   computed: {
     transfers () {
       // Reverse - to see the latest on top
-      let res = (JSON.parse(JSON.stringify(this.state.transfers))).reverse();
+      let res = this.state.transfers
 
-      // Maybe we should sort them
-      // txs.sort(function (tx1, tx2) {
-      //   return tx1.period < tx2.period
+      // // Maybe we should sort them
+      // res.sort(function (tr1, tr2) {
+      //   return tr1.timestamp > tr2.timestamp
       // })
 
       return res

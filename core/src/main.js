@@ -25,20 +25,19 @@ Vue.use(LoadScript)
 
 Vue.config.productionTip = false
 
-const routes = {
-  '/': Dashboard,
-  '/dashboard': Dashboard,
-  '/dashboard/': Dashboard,
-  '/donate': Donate
-}
-
 new Vue({
   data: {
     currentRoute: window.location.pathname
   },
   computed: {
     ViewComponent () {
-      return routes[this.currentRoute] || NotFound
+      if (this.currentRoute.includes('dashboard')) {
+        return Dashboard
+      } else if (this.currentRoute.includes('donate')) {
+        return Donate
+      } else {
+        return Dashboard
+      }
     }
   },
   render (h) {

@@ -13,11 +13,11 @@ let State = {
   },
 
   addTransfer(transfer) {
-    // TODO it probably has no id - I will add it manually
-    let newTransfers = JSON.parse(JSON.stringify(this.state.transfers))
-    const id = newTransfers.length + 1
-    newTransfers.push(Object.assign({id}, transfer))
-    Vue.set(this.state, 'transfers', newTransfers)
+    this.state.transfers.push(transfer)
+    this.state.transfers.sort(function (tr1, tr2) {
+      return tr1.timestamp > tr2.timestamp ? -1 : 1
+    })
+    Vue.set(this.state, 'transfers', this.state.transfers)
   },
 
   updateBalance(balance) {

@@ -24,7 +24,7 @@
       </td> -->
 
       <td>
-        {{ new Date(details.timestamp).toISOString() }}
+        {{ new Date(details.timestamp * 1000).toISOString() }}
       </td>
 
       <td>
