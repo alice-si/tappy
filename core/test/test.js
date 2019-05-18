@@ -2,6 +2,8 @@ const BN = require('bn.js');
 const chai = require('chai');
 const truffleAssert = require('truffle-assertions');
 
+// TODO this file could be converted and used to test our contracts for card id management
+
 const expect =
   chai
   .use(require('chai-as-promised'))

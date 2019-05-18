@@ -1,15 +1,8 @@
-# Homelink
+# Tappy core
 
-A prototype for social housing impact investing platform. Built
-on Odyssey Hackathon 2019.
+It consists of 2 parts
+- Web app with a dashboard
+- Node.js app (a bridge between kovan network and skale network)
 
-### To start application locally
-```bash
-npm run serve
-```
-
-### To redeploy contracts on rinkeby
-```bash
-npm run deploy
-```
-And don't forget to replace BUILDING_ADDRESS in src/Blockchain.js ;)
+## To run bridge
+`npm run bridge`
