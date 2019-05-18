@@ -1,16 +1,27 @@
 <template>
   <div id="balance-container">
-    <h2>10000</h2>
+    <h2>{{ balance }}</h2>
     <p>Contract balance</p>
   </div>
 </template>
 
 <script>
 
+import State from '../State'
+
 export default {
   name: "Balance",
+  data () {
+    return {
+      state: State.state,
+    }
+  },
   computed: {
-  }
+    // TODO maybe move it to data
+    balance () {
+      return this.state.balance
+    }
+  },
 };
 </script>
 
@@ -21,7 +32,6 @@ export default {
     margin: auto;
 
     max-width: 200px;
-    /* height: 150px; */
     border-radius: 10px;
     background: #1c587a;
     color: white;

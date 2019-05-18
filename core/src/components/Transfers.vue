@@ -15,10 +15,10 @@
       transfers-list">
       <table class="mdl-list">
         <tr id="header-line">
-          <td></td>
-          <td class="header-title">Amount</td>
-          <td class="header-title">From</td>
-          <td class="header-title">To</td>
+          <td class="header-title">Event</td>
+          <td class="header-title">Value</td>
+          <td class="header-title">Hash</td>
+          <td class="header-title">Address</td>
         </tr>
         <Transfer
           v-for="transfer in transfers"
@@ -34,8 +34,6 @@
 
 import State from '../State.js'
 import Transfer from './Transfer'
-
-State.startEventListening()
 
 export default {
   name: "Transfers",

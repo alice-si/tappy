@@ -1,13 +1,15 @@
 import Vue from 'vue'
+import Blockchain from './Blockchain'
 
-import { listenForTransfers } from './EventListener';
+import EventListener from './EventListener';
 
 let State = {
   debug: true,
   state: {
     eth: {
     },
-    transfers: []
+    transfers: [],
+    balance: 0
   },
 
   addTransfer(transfer) {
@@ -18,11 +20,21 @@ let State = {
     Vue.set(this.state, 'transfers', newTransfers)
   },
 
+  updateBalance(balance) {
+    Vue.set(this.state, 'balance', balance)
+  },
+
   startEventListening() {
     let prevThis = this
-    listenForTransfers(function (transfer) {
+    EventListener.listenForTransfers(function(transfer) {
       console.log(transfer)
       prevThis.addTransfer(transfer)
+    })
+
+    EventListener.listenForAnyEvents(async function() {
+      const newBalance = await Blockchain.getBalance()
+      console.log(`New balance = ${newBalance}`)
+      prevThis.updateBalance(newBalance)
     })
   }
 

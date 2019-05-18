@@ -4,6 +4,8 @@
   "private": true,
   "scripts": {
     "serve": "truffle compile && vue-cli-service serve",
+    "test": "truffle test",
+    "ganache": "ganache-cli -i 3 -a 10",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
     "compile": "truffle compile",

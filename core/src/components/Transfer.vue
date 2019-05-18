@@ -9,20 +9,27 @@
 
 
     <tr class="transfer-el">
-      <td>
+      <td v-if="details.type == 'load'">
         <img src="../../public/Coins.png">
+        {{ details.type }}
+      </td>
+
+      <td v-if="details.type == 'unload'">
+        <img src="../../public/bye.png">
+        {{ details.type }}
+      </td>
+
+
+      <td>
+        {{ details.value }}
       </td>
 
       <td>
-        {{ details.amount }}
+        {{ details.hash }}
       </td>
 
       <td>
-        {{ details.from }}
-      </td>
-
-      <td>
-        {{ details.to }}
+        {{ details.address }}
       </td>
 
     </tr>

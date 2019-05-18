@@ -6,3 +6,7 @@ It consists of 2 parts
 
 ## To run bridge
 `npm run bridge`
+
+## To run contracts tests
+`npm run ganache`
+`npm test` (in parallel)

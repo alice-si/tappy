@@ -17,6 +17,9 @@
 import NavBar from '../components/NavBar.vue'
 import Transfers from '../components/Transfers.vue'
 import Balance from '../components/Balance'
+import State from '../State'
+
+State.startEventListening()
 
 export default {
   name: 'app',
