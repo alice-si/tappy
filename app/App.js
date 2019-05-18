@@ -59,7 +59,8 @@ class App extends Component {
 
         // this._checkWeb3();
 
-        this._checkBlockchainModule();
+        // pass card id and animal here
+        this._checkBlockchainModule('1235633', 'doggy');
     }
 
     componentWillUnmount() {
@@ -210,11 +211,12 @@ class App extends Component {
         })
     }
 
-    _checkBlockchainModule(cardId) {
+    _checkBlockchainModule(cardId, cardPass) {
         let prevThis = this
-        const tempPass = 'tmp'
-        Blockchain.load(cardId, tempPass).then((res) => {
+        Blockchain.load(cardId, cardPass).then((res) => {
             prevThis.setState({blockchain: 'sent'})
+        }).catch(function(err) {
+            prevThis.setState({blockchain: 'err: ' + err})
         })
     }
 
