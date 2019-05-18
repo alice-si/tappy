@@ -34,8 +34,8 @@ export default {
   async getBalance() {
     console.log("Getting balance");
     const from = await this.account()
-    // console.log(`Using address: ${from}`)
-    return  Number(await this.contract().getAvailableAssets({ from }))
+    const balance = await this.contract().getAvailableAssets({ from })
+    return  Number(balance)
 
   },
 

@@ -9,22 +9,22 @@
 
 
     <tr class="transfer-el">
-      <!--<td v-if="details.type == 'load'">-->
-        <!--<img src="../../public/Coins.png">-->
-        <!--{{ details.type }}-->
-      <!--</td>-->
-
-      <!--<td v-if="details.type == 'unload'">-->
-        <!--<img src="../../public/bye.png">-->
-        <!--{{ details.type }}-->
-      <!--</td>-->
-
-      <td>
+      <td v-if="details.type == 'Card loaded'">
+        <img src="../../public/Coins.png">
         {{ details.type }}
       </td>
 
+      <td v-if="details.type != 'Card loaded'">
+        <img src="../../public/bye.png">
+        {{ details.type }}
+      </td>
+
+      <!-- <td>
+        {{ details.type }}
+      </td> -->
+
       <td>
-        {{ details.timestamp }}
+        {{ new Date(details.timestamp).toISOString() }}
       </td>
 
       <td>
@@ -71,8 +71,8 @@ export default {
     width: 100%;
     width: 15vw;
     padding-top: 20px;
-    padding-left: 3vw;
-    padding-right: 3vw;
+    padding-left: 1vw;
+    padding-right: 1vw;
     font-weight: 500;
     font-size: 16px;
     letter-spacing: 0.15px;
