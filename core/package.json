@@ -7,7 +7,8 @@
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
     "compile": "truffle compile",
-    "deploy": "truffle compile && truffle migrate --network rinkeby --reset"
+    "deploy": "truffle compile && truffle migrate --network rinkeby --reset",
+    "bridge": "node bridge/job.js"
   },
   "dependencies": {
     "chai": "^4.2.0",
