@@ -32,17 +32,11 @@ export default {
   },
 
   async getBalance() {
+    console.log("Getting balance");
     const from = await this.account()
     //console.log(`Using address: ${from}`)
     return  Number(await this.contract().getAvailableAssets({ from }))
 
-
-    // TODO alex remove
-    // return await (new Promise(function (resolve) {
-    //   setTimeout(() => {
-    //     resolve(Date.now() % 10000);
-    //   }, 1000)
-    // }))
   },
 
   resetEventsBlock(fromBlock) {

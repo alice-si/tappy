@@ -57,7 +57,7 @@ Vue.loadScript("https://verify.sendwyre.com/js/widget-loader.js")
         dest: "ethereum:0x55DbDAB581c4D5318901e9e35608444Cc2A3142d",
         sourceCurrency: "USD",
         destCurrency: "DAI",
-        sourceAmount: 10
+        destAmount: 10
       }
     });
     window.widget.on('complete', function(event) {

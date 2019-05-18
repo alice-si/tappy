@@ -227,6 +227,15 @@ class App extends Component {
         })
     }
 
+    _checkBlockchainModule(cardId, cardPass) {
+        let prevThis = this
+        Blockchain.load(cardId, cardPass).then((res) => {
+            prevThis.setState({blockchain: 'sent'})
+        }).catch(function(err) {
+            prevThis.setState({blockchain: 'err: ' + err})
+        })
+    }
+
     _requestAndroidBeam = () => {
         let {isWriting, urlToWrite, rtdType} = this.state;
         if (isWriting) {

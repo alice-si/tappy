@@ -25,19 +25,21 @@ let State = {
   },
 
   startEventListening() {
-    Blockchain.resetEventsBlock(0);
+    if (web3.version.network != 42) {
+      Blockchain.resetEventsBlock(0);
 
-    let prevThis = this
-    EventListener.listenForTransfers(function(transfer) {
-      console.log(transfer)
-      prevThis.addTransfer(transfer)
-    })
+      let prevThis = this
+      EventListener.listenForTransfers(function(transfer) {
+        console.log(transfer)
+        prevThis.addTransfer(transfer)
+      })
 
-    EventListener.listenForAnyEvents(async function() {
-      const newBalance = await Blockchain.getBalance()
-      //console.log(`New balance = ${newBalance}`)
-      prevThis.updateBalance(newBalance)
-    })
+      EventListener.listenForAnyEvents(async function() {
+        const newBalance = await Blockchain.getBalance()
+        //console.log(`New balance = ${newBalance}`)
+        prevThis.updateBalance(newBalance)
+      })
+    }
   }
 
 }
