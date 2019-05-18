@@ -16,6 +16,7 @@
       <table class="mdl-list">
         <tr id="header-line">
           <td class="header-title">Type</td>
+          <td class="header-title">Time</td>
           <td class="header-title">Agent</td>
           <td class="header-title">Value</td>
         </tr>
@@ -74,6 +75,7 @@ export default {
 
   .header-title {
     padding: 5px;
+    width: 15vw;
     border-radius: 3px;
   }
 

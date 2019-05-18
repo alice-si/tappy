@@ -23,6 +23,9 @@
         {{ details.type }}
       </td>
 
+      <td>
+        {{ details.timestamp }}
+      </td>
 
       <td>
         {{ details.agent }}

@@ -22,8 +22,8 @@ contract Manager is Ownable {
     event LoaderAdded(address indexed loader);
     event UnLoaderAdded(address indexed unLoader);
 
-    event AssetLoaded(address indexed loader, bytes32 hash, uint value);
-    event AssetUnLoaded(address indexed unloader, bytes32 hash, uint value);
+    event AssetLoaded(address indexed loader, bytes32 hash, uint value, uint256 time);
+    event AssetUnLoaded(address indexed unloader, bytes32 hash, uint value, uint256 time);
 
     modifier onlyLoader() {
         require(checkIsLoader(msg.sender) == true, 'Can only be called by a registered loader');
@@ -56,7 +56,7 @@ contract Manager is Ownable {
 
         holdings[_hash] = _amount;
         assetsHold = assetsHold.add(_amount);
-        emit AssetLoaded(msg.sender, _hash, _amount);
+        emit AssetLoaded(msg.sender, _hash, _amount, now);
     }
 
     function unLoad(string memory _id, string memory _code) public onlyUnLoader {
@@ -69,7 +69,7 @@ contract Manager is Ownable {
         assetsHold = assetsHold.sub(amount);
 
         token.transfer(msg.sender, amount);
-        emit AssetUnLoaded(msg.sender, hash, amount);
+        emit AssetUnLoaded(msg.sender, hash, amount, now);
     }
 
     function checkIsLoader(address _account) public view returns(bool) {

@@ -9,7 +9,8 @@
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
     "compile": "truffle compile",
-    "deploy": "truffle compile && truffle migrate --network rinkeby --reset",
+    "deploy-kovan": "truffle compile && truffle migrate --network kovan --reset",
+    "deploy-skale": "truffle compile && truffle migrate --network skale --reset",
     "bridge": "node bridge/job.js"
   },
   "dependencies": {

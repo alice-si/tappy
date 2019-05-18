@@ -6,7 +6,7 @@ import Web3 from 'web3';
 
 
 const MNEMONIC = "turtle enforce elbow glow trap garbage private maximum sail hole wire half";
-const MANAGER_CONTRACT_ADDRESS = '0x3a2C96aA949Eec6C44D042eb0eC017f2866d0E8B';
+const MANAGER_CONTRACT_ADDRESS = '0x14ABE122Ba65955a892412bbB89F083D100F2Ce5';
 const DEFAULT_AMOUNT = '1.0';
 
 // const ADDRESS = '0xD0e7083A32c61f28CD0d713C47A2611e1c2dadC9'; // <- it is unused

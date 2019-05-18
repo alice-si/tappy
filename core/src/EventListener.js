@@ -11,7 +11,6 @@ export default {
   },
 
   listenForTransfers: function(cb) {
-    //TODO alex uncomment it
 
     let contract = Blockchain.contract();
     console.log(`Contract: ${contract}`);
@@ -19,19 +18,21 @@ export default {
     let loadedFilter = contract.filters.AssetLoaded();
     let unLoadedFilter = contract.filters.AssetUnLoaded();
 
-    contract.on(loadedFilter, (address, hash, value) => {
+    contract.on(loadedFilter, (address, hash, value, timestamp) => {
       cb({
         type: 'Card loaded',
         agent: address,
-        value: Number(web3.fromWei(value, 'ether')).toPrecision(2)
+        value: Number(web3.fromWei(value, 'ether')).toPrecision(2),
+        timestamp: Number(timestamp)
       })
     })
 
-    contract.on(unLoadedFilter, (address, hash, value) => {
+    contract.on(unLoadedFilter, (address, hash, valu, timestamp) => {
       cb({
         type: 'Card unloaded',
         agent: address,
-        value: Number(web3.fromWei(value, 'ether')).toPrecision(2)
+        value: Number(web3.fromWei(value, 'ether')).toPrecision(2),
+        timestamp: Number(timestamp)
       })
   })
   }
