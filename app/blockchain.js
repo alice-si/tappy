@@ -1,4 +1,5 @@
 import { ethers } from 'ethers';
+import CryptoJS from 'crypto-js';
 import { HDWalletProvider} from 'truffle-hdwallet-provider';
 
 
@@ -9,14 +10,22 @@ function Blockchain() {
     'https://kovan.infura.io/v3/154fbc552a454311855d44e1e73ea46a',
   );
 
+  function getHash(cardId) {
+    // TODO alex remove
+    return btoa('123' + cardId + '123')
 
+    // TODO alex uncomment
+    // return CryptoJS.MD5(cardId + 'kindofsalt').toString();
+  }
 
-  this.hello = function() {
-    return 'hello!';
+  this.load = async function(cardId) {
+    const hash = getHash(cardId);
+    // TODO send load transaction 
   };
 
-  this.goodbye = function() {
-    return 'goodbye!';
+  this.unload = async function(cardId) {
+    const hash = getHash(cardId);
+    // TODO send unload transaction 
   };
 }
 
