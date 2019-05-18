@@ -27,7 +27,7 @@
                     class="mdl-navigation__link"
                     v-bind:class="{selected: selected == 'donate'}"
                     href="/donate"
-            >Donate</a>
+            >Donate with Wyre</a>
           </nav>
         </div>
       </div>
