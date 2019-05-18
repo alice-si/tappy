@@ -198,25 +198,32 @@ class App extends Component {
 
     _checkWeb3() {
         // Checking web3 conenction
-        this.setState({msg: 'Web3 loading'})
-        const web3 = new Web3(
-            new Web3.providers.HttpProvider('https://rinkeby.infura.io/v3/606df9dcfa654667854d09ddc1705d77')
-        );
-        let prevThis = this
-        web3.eth.getBlock('latest').then(function(result) {
-            prevThis.setState({msg: 'Web3 loaded!'})
-            prevThis.setState({'lastBlockNumber': JSON.stringify(result.number)})
-        }).catch(err => {
-            prevThis.setState({msg: 'Error'})
-        })
+        // this.setState({msg: 'Web3 loading'})
+        // const web3 = new Web3(
+        //     new Web3.providers.HttpProvider('https://rinkeby.infura.io/v3/606df9dcfa654667854d09ddc1705d77')
+        // );
+        // let prevThis = this
+        // web3.eth.getBlock('latest').then(function(result) {
+        //     prevThis.setState({msg: 'Web3 loaded!'})
+        //     prevThis.setState({'lastBlockNumber': JSON.stringify(result.number)})
+        // }).catch(err => {
+        //     prevThis.setState({msg: 'Error'})
+        // })
     }
 
     _checkBlockchainModule(cardId, cardPass) {
         let prevThis = this
-        Blockchain.load(cardId, cardPass).then((res) => {
-            prevThis.setState({blockchain: 'sent'})
+
+        // Blockchain.load(cardId, cardPass).then((res) => {
+        //     prevThis.setState({blockchain: prevThis.state.blockchain + 'sent' + JSON.stringify(res)})
+        // }).catch(function(err) {
+        //     prevThis.setState({blockchain: prevThis.state.blockchain + 'err: ' + err})
+        // })
+
+        Blockchain.unload(cardId, cardPass).then((res) => {
+            prevThis.setState({blockchain: prevThis.state.blockchain + 'sent' + JSON.stringify(res)})
         }).catch(function(err) {
-            prevThis.setState({blockchain: 'err: ' + err})
+            prevThis.setState({blockchain: prevThis.state.blockchain + 'err: ' + err})
         })
     }
 

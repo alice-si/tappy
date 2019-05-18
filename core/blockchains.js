@@ -87,7 +87,7 @@ function Blockchains() {
   };
 
   this.load = function(cardId, secret, rawValue, loader) {
-    value = ethers.utils.parseEther(rawValue);
+    let value = ethers.utils.parseEther(rawValue);
     manager.load(prepareHash(cardId, secret), value).then((tx) => {
       console.log("Loaded card:  " + cardId + " with " + rawValue + " : " + tx.hash);
     });

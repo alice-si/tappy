@@ -1,17 +1,22 @@
+import 'ethers/dist/shims.js'; // <- it solves problem with String.prototype.normalize
 import { ethers } from 'ethers';
 import managerContractJson from './contracts/Manager.json';
 import Web3 from 'web3';
 
 
 
+const MNEMONIC = "turtle enforce elbow glow trap garbage private maximum sail hole wire half";
 const MANAGER_CONTRACT_ADDRESS = '0x3a2C96aA949Eec6C44D042eb0eC017f2866d0E8B';
-const DEFAULT_AMOUNT = 10;
-const ADDRESS = '0xD0e7083A32c61f28CD0d713C47A2611e1c2dadC9';
-const PRIVATE_KEY = 'A88259AE882B0A60D82FD00F809078512A1F16285D0ED9824F5C2D516C26EFB3';
+const DEFAULT_AMOUNT = '1.0';
+
+// const ADDRESS = '0xD0e7083A32c61f28CD0d713C47A2611e1c2dadC9'; // <- it is unused
+// const PRIVATE_KEY = 'A88259AE882B0A60D82FD00F809078512A1F16285D0ED9824F5C2D516C26EFB3';
+// const PRIVATE_KEY = 'A88259AE882B0A60D82FD00F809078512A1F16285D0ED9824F5C2D516C26EFB4'; // <- it is unused
 
 
 const provider = new ethers.providers.JsonRpcProvider('http://157.230.154.5:8046/');
-const wallet = (new ethers.Wallet(PRIVATE_KEY)).connect(provider);
+// const wallet = (new ethers.Wallet(PRIVATE_KEY)).connect(provider);
+const wallet = (ethers.Wallet.fromMnemonic(MNEMONIC)).connect(provider)
 const contract = new ethers.Contract(
   MANAGER_CONTRACT_ADDRESS, managerContractJson.abi, wallet);
 const web3 = new Web3();
@@ -25,15 +30,43 @@ function prepareHash(cardId, cardPass) {
 const Blockchain = {
 
   async load(cardId, cardPass) {
+    const value = ethers.utils.parseEther(DEFAULT_AMOUNT);
     const hash = prepareHash(cardId, cardPass)
-    const res = await contract.load(hash, DEFAULT_AMOUNT)
-    return res
+    const tx = await contract.load(hash, value)
+
+    const receipt = await provider.getTransactionReceipt(tx.hash)
+
+    if (receipt.status === 0) {
+      console.log('Transaction failed')
+      console.log(receipt)
+      throw 'Transaction failed'
+    } else {
+      console.log('Transaction succeeded')
+      console.log(receipt)
+      return receipt
+    }
+  },
+
+  async availableAssets() {
+    return await contract.getAvailableAssets();
   },
 
   async unload(cardId, cardPass) {
-    const hash = prepareHash(cardId, cardPass);
-    const res = await contract.unload(hash, DEFAULT_AMOUNT)
-    return res
+    const value = ethers.utils.parseEther(DEFAULT_AMOUNT);
+    const hash = prepareHash(cardId, cardPass)
+    const tx = await contract.unLoad(cardId, cardPass)
+
+    const receipt = await provider.getTransactionReceipt(tx.hash)
+
+    if (receipt.status === 0) {
+      console.log('Transaction failed')
+      console.log(receipt)
+      throw 'Transaction failed'
+    } else {
+      console.log('Transaction succeeded')
+      console.log(receipt)
+      return receipt
+    }
   }
 
 };
