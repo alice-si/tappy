@@ -92,7 +92,7 @@ class App extends Component {
                                 {
                                     Object.keys(RtdType).map(
                                         key => (
-                                            <TouchableOpacity 
+                                            <TouchableOpacity
                                                 key={key}
                                                 style={{marginRight: 10}}
                                                 onPress={() => this.setState({rtdType: RtdType[key]})}
@@ -113,20 +113,20 @@ class App extends Component {
                                 />
                             </View>
 
-                            <TouchableOpacity 
-                                style={{ marginTop: 20, borderWidth: 1, borderColor: 'blue', padding: 10 }} 
+                            <TouchableOpacity
+                                style={{ marginTop: 20, borderWidth: 1, borderColor: 'blue', padding: 10 }}
                                 onPress={isWriting ? this._cancelNdefWrite : this._requestNdefWrite}>
                                 <Text style={{color: 'blue'}}>{`(android) ${isWriting ? 'Cancel' : 'Write NDEF'}`}</Text>
                             </TouchableOpacity>
 
-                            <TouchableOpacity 
-                                style={{ marginTop: 20, borderWidth: 1, borderColor: 'blue', padding: 10 }} 
+                            <TouchableOpacity
+                                style={{ marginTop: 20, borderWidth: 1, borderColor: 'blue', padding: 10 }}
                                 onPress={isWriting ? this._cancelNdefWrite : this._requestFormat}>
                                 <Text style={{color: 'blue'}}>{`(android) ${isWriting ? 'Cancel' : 'Format'}`}</Text>
                             </TouchableOpacity>
 
-                            <TouchableOpacity 
-                                style={{ marginTop: 20, borderWidth: 1, borderColor: 'blue', padding: 10 }} 
+                            <TouchableOpacity
+                                style={{ marginTop: 20, borderWidth: 1, borderColor: 'blue', padding: 10 }}
                                 onPress={isWriting ? this._cancelAndroidBeam : this._requestAndroidBeam}>
                                 <Text style={{color: 'blue'}}>{`${isWriting ? 'Cancel ' : ''}Android Beam`}</Text>
                             </TouchableOpacity>
@@ -254,7 +254,7 @@ class App extends Component {
                 }
             )
                 .then(sub => {
-                    this._stateChangedSubscription = sub; 
+                    this._stateChangedSubscription = sub;
                     // remember to call this._stateChangedSubscription.remove()
                     // when you don't want to listen to this anymore
                 })

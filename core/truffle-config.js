@@ -46,18 +46,18 @@ module.exports = {
   networks: {
     development: {
       host: "127.0.0.1",     // Localhost (default: none)
-      port: 7545,            // Standard Ethereum port (default: none)
+      port: 8545,            // Standard Ethereum port (default: none)
       network_id: "*",       // Any network (default: none)
     },
-    rinkeby: {
+    kovan: {
       provider: function() {
         return new HDWalletProvider(
           mnemonic,
-          `https://rinkeby.infura.io/v3/${infuraProject}`);
+          `https://kovan.infura.io/v3/${infuraProject}`);
       },
-      network_id: 4,
+      network_id: 42,
       gas: 4700000,
-      from: '0xD0e7083A32c61f28CD0d713C47A2611e1c2dadC9',
+      from: '0x55DbDAB581c4D5318901e9e35608444Cc2A3142d',
       skipDryRun: true,
     },
   },
