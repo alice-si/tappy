@@ -1,84 +1,43 @@
-import {pick} from 'lodash'
 import Vue from 'vue'
-import dialogPolyfill from 'dialog-polyfill';
+import Blockchain from './Blockchain'
 
-import { aggregateStats, listenForHistoryEvents } from './AggregateStats';
+import EventListener from './EventListener';
 
 let State = {
   debug: true,
   state: {
-    message: 'Something',
-    modalVisible: false,
-    modalCb: null,
     eth: {
     },
-    stats: {
-      tenants: {},
-      numbers: {},
-    },
-    history: {},
-    files: null
+    transfers: [],
+    balance: 0
   },
-  updateFiles (files) {
-    Vue.set(this.state, 'files', files)
+
+  addTransfer(transfer) {
+    // TODO it probably has no id - I will add it manually
+    let newTransfers = JSON.parse(JSON.stringify(this.state.transfers))
+    const id = newTransfers.length + 1
+    newTransfers.push(Object.assign({id}, transfer))
+    Vue.set(this.state, 'transfers', newTransfers)
   },
-  startHistoryEventListening () {
+
+  updateBalance(balance) {
+    Vue.set(this.state, 'balance', balance)
+  },
+
+  startEventListening() {
     let prevThis = this
-    listenForHistoryEvents(function (historyEvent) {
-      console.log(historyEvent)
-      // prevThis.state.history[historyEvent.period] = historyEvent
-      Vue.set(prevThis.state.history, historyEvent.period, historyEvent)
+    EventListener.listenForTransfers(function(transfer) {
+      console.log(transfer)
+      prevThis.addTransfer(transfer)
     })
-  },
-  startEventListening () {
-    let prevThis = this
-    // let numbers = this.numbers
-    aggregateStats(function (update) {
-      function getOutcomesDict (outcomeList) {
-        let outcomesDict = {}
-        for (let outcome of outcomeList) {
-          outcomesDict[outcome.period] = outcome
-        }
-        return outcomesDict
-      }
-      // This hack makes an independent object copy
-      let newTenant = JSON.parse(JSON.stringify(update.tenant))
-      if (newTenant.outcomes && newTenant.outcomes.length > 0) {
-        newTenant.outcomesDict = getOutcomesDict(newTenant.outcomes)
-      } else {
-        newTenant.outcomesDict = {}
-      }
-      Vue.set(prevThis.state.stats.tenants, update.tenant.address, newTenant)
-      Vue.set(prevThis.state.stats, 'numbers', pick(update, [
-        'jobsCreated',
-        'currentlyEmployed',
-        'avgTimeToIndependence',
-        'nowIndependent',
-        'avgTimeToFindJob',
-        'savingsRate',
-      ]))
+
+    EventListener.listenForAnyEvents(async function() {
+      const newBalance = await Blockchain.getBalance()
+      console.log(`New balance = ${newBalance}`)
+      prevThis.updateBalance(newBalance)
     })
-  },
-  showQuestionModalDialog (cb) {
-    this.modalVisible = true;
-    this.modalCb = cb;
-    let dialog = document.querySelector('dialog');
-    dialogPolyfill.registerDialog(dialog);
-    dialog.showModal();
-  },
-  setMessageAction (newValue) {
-    // if (this.debug) console.log('setMessageAction triggered with', newValue)
-    this.state.message = newValue
-  },
-  clearMessageAction () {
-    // if (this.debug) console.log('clearMessageAction triggered')
-    this.state.message = 'ZXC'
-  },
-  runCallback (choice) {
-    if (this.modalCb) {
-      this.modalCb(choice);
-    }
-  },
+  }
+
 }
 
 export default State

@@ -13,7 +13,7 @@ const expect =
 const Manager = artifacts.require('Manager');
 const Token = artifacts.require('Token');
 
-contract('Building', ([owner, loader, unLoader]) => {
+contract('Manager', ([owner, loader, unLoader]) => {
 
   let token;
   let manager;
