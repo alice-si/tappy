@@ -1,10 +1,8 @@
 import Vue from 'vue'
 
-import Voting from './views/Voting.vue'
-import Wallet from './views/Wallet.vue'
+import Dashboard from './views/Dashboard.vue'
 import NotFound from './views/NotFound.vue'
-import OnBoard from './views/OnBoard.vue'
-import Stats from './views/Stats'
+
 // import VuetifyToast from 'vuetify-toast-snackbar'
 
 import Notifications from 'vue-notification'
@@ -25,11 +23,9 @@ Vue.use(VueMdl)
 Vue.config.productionTip = false
 
 const routes = {
-  '/': Wallet,
-  '/wallet': Wallet,
-  '/stats': Stats,
-  '/voting': Voting,
-  '/onboard': OnBoard
+  '/': Dashboard,
+  '/dashboard': Dashboard,
+  '/dashboard/': Dashboard
 }
 
 new Vue({
