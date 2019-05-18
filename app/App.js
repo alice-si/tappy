@@ -1,3 +1,7 @@
+// It must be at the top (at least before web3)
+import './global';
+
+import Web3 from 'web3';
 import React, { Component } from 'react';
 import {
     View,
@@ -39,6 +43,7 @@ class App extends Component {
             rtdType: RtdType.URL,
             parsedText: null,
             tag: {},
+            lastBlockNumber: 'Don\'t know yet'
         }
     }
 
@@ -50,6 +55,8 @@ class App extends Component {
                     this._startNfc();
                 }
             })
+
+        this._checkWeb3();
     }
 
     componentWillUnmount() {
@@ -59,12 +66,15 @@ class App extends Component {
     }
 
     render() {
-        let { supported, enabled, tag, isWriting, urlToWrite, parsedText, rtdType } = this.state;
+        let { supported, enabled, tag, isWriting, urlToWrite, parsedText, rtdType, lastBlockNumber, msg } = this.state;
         return (
             <ScrollView style={{flex: 1}}>
                 { Platform.OS === 'ios' && <View style={{ height: 60 }} /> }
 
                 <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+                    <Text>{`Msg: ${msg}`}</Text>
+                    <Text>{`WEB3 Stats: ${lastBlockNumber}`}</Text>
+
                     <Text>{`Is NFC supported sadhfj ALEX ? ${supported}`}</Text>
                     <Text>{`Is NFC enabled (Android only)? ${enabled}`}</Text>
 
@@ -179,6 +189,21 @@ class App extends Component {
         NfcManager.cancelNdefWrite()
             .then(() => console.log('write cancelled'))
             .catch(err => console.warn(err))
+    }
+
+    _checkWeb3() {
+        // Checking web3 conenction
+        this.setState({msg: 'Web3 loading'})
+        const web3 = new Web3(
+            new Web3.providers.HttpProvider('https://rinkeby.infura.io/v3/606df9dcfa654667854d09ddc1705d77')
+        );
+        let prevThis = this
+        web3.eth.getBlock('latest').then(function(result) {
+            prevThis.setState({msg: 'Web3 loaded!'})
+            prevThis.setState({'lastBlockNumber': JSON.stringify(result.number)})
+        }).catch(err => {
+            prevThis.setState({msg: 'Error'})
+        })
     }
 
     _requestAndroidBeam = () => {
