@@ -21,12 +21,14 @@
             <a
               class="mdl-navigation__link"
               v-bind:class="{selected: selected == 'dashboard'}"
-              href="/dashboard"
+              onclick="window.location.href = '#dashboard'; window.location.reload()"
+              href="#"
             >Dashboard</a>
             <a
-                    class="mdl-navigation__link"
-                    v-bind:class="{selected: selected == 'donate'}"
-                    href="/donate"
+              class="mdl-navigation__link"
+              v-bind:class="{selected: selected == 'donate'}"
+              onclick="window.location.href = '#donate'; window.location.reload()"
+              href="#"
             >Donate with Wyre</a>
           </nav>
         </div>

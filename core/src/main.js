@@ -27,7 +27,7 @@ Vue.config.productionTip = false
 
 new Vue({
   data: {
-    currentRoute: window.location.pathname
+    currentRoute: window.location.href
   },
   computed: {
     ViewComponent () {
