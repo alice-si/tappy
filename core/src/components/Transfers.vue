@@ -15,10 +15,9 @@
       transfers-list">
       <table class="mdl-list">
         <tr id="header-line">
-          <td class="header-title">Event</td>
+          <td class="header-title">Type</td>
+          <td class="header-title">Agent</td>
           <td class="header-title">Value</td>
-          <td class="header-title">Hash</td>
-          <td class="header-title">Address</td>
         </tr>
         <Transfer
           v-for="transfer in transfers"

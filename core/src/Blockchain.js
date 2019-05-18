@@ -3,7 +3,7 @@ import { ethers } from 'ethers'
 import managerContractJson from '../build/contracts/Manager.json'
 
 // TODO set it to actual token adress
-const MANAGER_CONTRACT_ADDRESS = '0x0';
+const MANAGER_CONTRACT_ADDRESS = '0x3a2C96aA949Eec6C44D042eb0eC017f2866d0E8B';
 
 window.ethereum.enable();
 
@@ -32,21 +32,20 @@ export default {
   },
 
   async getBalance() {
-    // TODO alex uncomment it
-    // const from = await this.account()
-    // console.log(`Using address: ${from}`)
-    // return await Number(this.contract().getAvailableAssets({ from }))
+    const from = await this.account()
+    //console.log(`Using address: ${from}`)
+    return  Number(await this.contract().getAvailableAssets({ from }))
 
 
     // TODO alex remove
-    return await (new Promise(function (resolve) {
-      setTimeout(() => {
-        resolve(Date.now() % 10000);
-      }, 1000)
-    }))
-  }
+    // return await (new Promise(function (resolve) {
+    //   setTimeout(() => {
+    //     resolve(Date.now() % 10000);
+    //   }, 1000)
+    // }))
+  },
 
-  // resetEventsBlock(fromBlock) {
-  //   provider.resetEventsBlock(fromBlock);
-  // }
+  resetEventsBlock(fromBlock) {
+    provider.resetEventsBlock(fromBlock);
+  }
 }

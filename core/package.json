@@ -25,7 +25,9 @@
     "vue-directive-tooltip": "^1.5.1",
     "vue-mdl": "^1.1.1",
     "vue-notification": "^1.3.16",
-    "vuetify-toast-snackbar": "^0.1.6"
+    "vue-plugin-load-script": "^1.2.0",
+    "vuetify-toast-snackbar": "^0.1.6",
+    "web3": "^1.0.0-beta.55"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^3.0.3",

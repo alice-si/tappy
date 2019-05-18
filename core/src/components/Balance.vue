@@ -1,6 +1,6 @@
 <template>
   <div id="balance-container">
-    <h2>{{ balance }}</h2>
+    <h2>{{ balance }} sDai</h2>
     <p>Contract balance</p>
   </div>
 </template>
@@ -19,7 +19,7 @@ export default {
   computed: {
     // TODO maybe move it to data
     balance () {
-      return this.state.balance
+      return Number(web3.fromWei(this.state.balance, 'ether')).toPrecision(2);
     }
   },
 };

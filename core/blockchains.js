@@ -1,14 +1,20 @@
 const ethers = require('ethers');
+const Web3 = require('web3');
 const tokenContractJson = require('./build/contracts/Token.json');
+const managerContractJson = require('./build/contracts/Manager.json');
 
 
 function Blockchains() {
 
   const TOKEN_ADDRESS = {};
-  TOKEN_ADDRESS['KOVAN'] = '0x9B9e49D6c05AF54c0799D22A7d8DDf326E9b6224';
-  TOKEN_ADDRESS['SKALE'] = '0x9B9e49D6c05AF54c0799D22A7d8DDf326E9b6224';
+  const MANAGER_ADDRESS = {};
+  TOKEN_ADDRESS['KOVAN'] = '0xc4375b7de8af5a38a93548eb8453a498222c4ff2';
+  TOKEN_ADDRESS['SKALE'] = '0xCe1bEf07c4EB8118daFb829c97100E2d59506B08';
+  MANAGER_ADDRESS['SKALE'] = '0x3a2C96aA949Eec6C44D042eb0eC017f2866d0E8B';
 
   let mnemonic, infuraProject;
+
+  const web3 = new Web3();
 
   try {
     const secrets = require('./secrets.json');
@@ -18,6 +24,12 @@ function Blockchains() {
     console.log('You should have secrets.json file with mnemonic key and infura'
       + 'project id if you want to be able to deploy contracts');
   }
+
+  let prepareHash = function(cardId, cardPass) {
+    return web3.utils.soliditySha3(web3.eth.abi.encodeParameters(['string', 'string'],
+      [cardId, cardPass]
+    ));
+  };
 
   let wallet = ethers.Wallet.fromMnemonic(mnemonic);
   let providers = {};
@@ -32,6 +44,7 @@ function Blockchains() {
 
   tokens['KOVAN'] = new ethers.Contract(TOKEN_ADDRESS['KOVAN'], tokenContractJson.abi, wallets['KOVAN']);
   tokens['SKALE'] = new ethers.Contract(TOKEN_ADDRESS['SKALE'], tokenContractJson.abi, wallets['SKALE']);
+  let manager = new ethers.Contract(MANAGER_ADDRESS['SKALE'], managerContractJson.abi, wallets['SKALE']);
 
   this.getToken = function(network) {
     return tokens[network];
@@ -60,6 +73,31 @@ function Blockchains() {
       console.log("Minted " + value + " on " + network + " : " + tx.hash);
     });
   };
+
+  this.addLoader = function(address) {
+    return manager.addLoader(address).then((tx) => {
+      console.log("Loader " + address + " added: " + tx.hash);
+    });
+  };
+
+  this.addUnLoader = function(address) {
+    return manager.addUnLoader(address).then((tx) => {
+      console.log("UnLoader " + address + " added: " + tx.hash);
+    });
+  };
+
+  this.load = function(cardId, secret, rawValue, loader) {
+    value = ethers.utils.parseEther(rawValue);
+    manager.load(prepareHash(cardId, secret), value).then((tx) => {
+      console.log("Loaded card:  " + cardId + " with " + rawValue + " : " + tx.hash);
+    });
+  };
+
+  this.unLoad = function(cardId, secret, unLoader) {
+    manager.unLoad(cardId, secret).then((tx) => {
+      console.log("Unloaded card:  " + cardId + " : " + tx.hash);
+    });
+  }
 
 }
 

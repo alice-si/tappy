@@ -9,27 +9,27 @@
 
 
     <tr class="transfer-el">
-      <td v-if="details.type == 'load'">
-        <img src="../../public/Coins.png">
+      <!--<td v-if="details.type == 'load'">-->
+        <!--<img src="../../public/Coins.png">-->
+        <!--{{ details.type }}-->
+      <!--</td>-->
+
+      <!--<td v-if="details.type == 'unload'">-->
+        <!--<img src="../../public/bye.png">-->
+        <!--{{ details.type }}-->
+      <!--</td>-->
+
+      <td>
         {{ details.type }}
       </td>
 
-      <td v-if="details.type == 'unload'">
-        <img src="../../public/bye.png">
-        {{ details.type }}
-      </td>
 
+      <td>
+        {{ details.agent }}
+      </td>
 
       <td>
         {{ details.value }}
-      </td>
-
-      <td>
-        {{ details.hash }}
-      </td>
-
-      <td>
-        {{ details.address }}
       </td>
 
     </tr>

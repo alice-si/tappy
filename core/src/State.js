@@ -25,6 +25,8 @@ let State = {
   },
 
   startEventListening() {
+    Blockchain.resetEventsBlock(0);
+
     let prevThis = this
     EventListener.listenForTransfers(function(transfer) {
       console.log(transfer)
@@ -33,7 +35,7 @@ let State = {
 
     EventListener.listenForAnyEvents(async function() {
       const newBalance = await Blockchain.getBalance()
-      console.log(`New balance = ${newBalance}`)
+      //console.log(`New balance = ${newBalance}`)
       prevThis.updateBalance(newBalance)
     })
   }
