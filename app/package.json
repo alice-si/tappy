@@ -35,6 +35,7 @@
     "truffle-hdwallet-provider": "^1.0.9",
     "url": "^0.10.3",
     "util": "^0.10.4",
+    "unorm": "^1.5.0",
     "web3": "^1.0.0-beta.55"
   },
   "devDependencies": {
