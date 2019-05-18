@@ -28,4 +28,4 @@ async function sync() {
 
 setInterval(function() {
   sync();
-}, 1000);
+}, 3000);
