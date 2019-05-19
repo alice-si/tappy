@@ -5,8 +5,23 @@ import KittyKeySelect from './KittyKeySelect'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import ACTIONS from '../modules/actions'
+import {BackHandler} from 'react-native'
 
-class CustomRouter extends Component {
+class CustomRouter extends Component { 
+
+    componentDidMount() {
+        const {currentPage, handleBackButtonPress} = this.props
+        this.backHandler = BackHandler.addEventListener('hardwareBackPress', () => {
+            handleBackButtonPress(currentPage)
+            return true;
+        });
+    }
+
+    componentWillUnmount() {
+      BackHandler.removeEventListener('hardwareBackPress', this.props.handleBackButtonPress);
+    }
+  
+    
     render () {
         const { currentPage } = this.props
 
@@ -28,6 +43,7 @@ class CustomRouter extends Component {
 
 CustomRouter.propTypes = {
     currentPage: PropTypes.string.isRequired,
+    handleBackButtonPress: PropTypes.func.isRequired
 }
 
 const mapStateToProps = state => ({
@@ -36,9 +52,10 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
     updateCurrentPage: page => dispatch(ACTIONS.updateCurrentPage(page)), 
+    handleBackButtonPress: currentPage => dispatch(ACTIONS.handleBackButtonPress(currentPage))
 })
 
 export default connect(
     mapStateToProps,
-    mapDispatchToProps
+    mapDispatchToProps,
 )(CustomRouter)
