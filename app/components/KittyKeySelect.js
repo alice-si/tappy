@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import {
+    Alert,
     View,
     ListView,
     Image,
@@ -80,14 +81,14 @@ class KittyKeySelect extends Component {
                     const cardId = this.props.nfcTagId
 
                     blockchainMethod(cardId.toString(), keyNumber.toString()).then(function() {
-                        // TODO implement nice notifications
-                        console.warn('Blockchain transaction sent successfully')
+                        Alert.alert('Blockchain transaction sent successfully')
                         props.updateCurrentAction('none')
                         props.updateCurrentPage('home')
                     }, function(err) {
-                        // TODO Implement nice notification
                         console.warn(err)
-                        console.warn('Blockchain transaction failed. Please try again')
+                        Alert.alert('Blockchain transaction failed. Please try again')
+                        props.updateCurrentAction('none')
+                        props.updateCurrentPage('home')
                     })
                     
                 }}>
