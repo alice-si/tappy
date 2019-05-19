@@ -5,7 +5,6 @@ import {
     Platform,
     TouchableOpacity,
     Linking,
-    TextInput,
     ScrollView,
 } from 'react-native';
 import NfcManager, {Ndef} from 'react-native-nfc-manager';
@@ -57,7 +56,7 @@ class NFCReader extends Component {
     }
 
     render() {
-        let { supported, enabled, tag, isWriting, urlToWrite, parsedText, rtdType } = this.state;
+        let { supported, enabled, tag, parsedText, } = this.state;
         return (
             <ScrollView style={{flex: 1}}>
                 { Platform.OS === 'ios' && <View style={{ height: 60 }} /> }
@@ -82,128 +81,11 @@ class NFCReader extends Component {
                         <Text >(android) Go to NFC setting</Text>
                     </TouchableOpacity>
 
-                    {
-                        <View style={{padding: 10, marginTop: 20, backgroundColor: '#e0e0e0'}}>
-                            <Text>(android) Write NDEF Test</Text>
-                            <View style={{flexDirection: 'row', marginTop: 10}}>
-                                <Text style={{marginRight: 15}}>Types:</Text>
-                                {
-                                    Object.keys(RtdType).map(
-                                        key => (
-                                            <TouchableOpacity 
-                                                key={key}
-                                                style={{marginRight: 10}}
-                                                onPress={() => this.setState({rtdType: RtdType[key]})}
-                                            >
-                                                <Text style={{color: rtdType === RtdType[key] ? 'blue' : '#aaa'}}>
-                                                    {key}
-                                                </Text>
-                                            </TouchableOpacity>
-                                        )
-                                    )
-                                }
-                            </View>
-                            <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-                                <TextInput
-                                    style={{width: 200}}
-                                    value={urlToWrite}
-                                    onChangeText={urlToWrite => this.setState({ urlToWrite })}
-                                />
-                            </View>
-
-                            <TouchableOpacity 
-                                style={{ marginTop: 20, borderWidth: 1, borderColor: 'blue', padding: 10 }} 
-                                onPress={isWriting ? this._cancelNdefWrite : this._requestNdefWrite}>
-                                <Text style={{color: 'blue'}}>{`(android) ${isWriting ? 'Cancel' : 'Write NDEF'}`}</Text>
-                            </TouchableOpacity>
-
-                            <TouchableOpacity 
-                                style={{ marginTop: 20, borderWidth: 1, borderColor: 'blue', padding: 10 }} 
-                                onPress={isWriting ? this._cancelNdefWrite : this._requestFormat}>
-                                <Text style={{color: 'blue'}}>{`(android) ${isWriting ? 'Cancel' : 'Format'}`}</Text>
-                            </TouchableOpacity>
-
-                            <TouchableOpacity 
-                                style={{ marginTop: 20, borderWidth: 1, borderColor: 'blue', padding: 10 }} 
-                                onPress={isWriting ? this._cancelAndroidBeam : this._requestAndroidBeam}>
-                                <Text style={{color: 'blue'}}>{`${isWriting ? 'Cancel ' : ''}Android Beam`}</Text>
-                            </TouchableOpacity>
-                        </View>
-                    }
-
                     <Text style={{ marginTop: 20 }}>{`Current tag JSON: ${JSON.stringify(tag)}`}</Text>
                     { parsedText && <Text style={{ marginTop: 10, marginBottom: 20, fontSize: 18 }}>{`Parsed Text: ${parsedText}`}</Text>}
                 </View>
             </ScrollView>
         )
-    }
-
-    _requestFormat = () => {
-        let {isWriting} = this.state;
-        if (isWriting) {
-            return;
-        }
-
-        this.setState({isWriting: true});
-        NfcManager.requestNdefWrite(null, {format: true})
-            .then(() => console.log('format completed'))
-            .catch(err => console.warn(err))
-            .then(() => this.setState({isWriting: false}));
-    }
-
-    _requestNdefWrite = () => {
-        let {isWriting, urlToWrite, rtdType} = this.state;
-        if (isWriting) {
-            return;
-        }
-
-        let bytes;
-
-        if (rtdType === RtdType.URL) {
-            bytes = buildUrlPayload(urlToWrite);
-        } else if (rtdType === RtdType.TEXT) {
-            bytes = buildTextPayload(urlToWrite);
-        }
-
-        this.setState({isWriting: true});
-        NfcManager.requestNdefWrite(bytes)
-            .then(() => console.log('write completed'))
-            .catch(err => console.warn(err))
-            .then(() => this.setState({isWriting: false}));
-    }
-
-    _cancelNdefWrite = () => {
-        this.setState({isWriting: false});
-        NfcManager.cancelNdefWrite()
-            .then(() => console.log('write cancelled'))
-            .catch(err => console.warn(err))
-    }
-
-    _requestAndroidBeam = () => {
-        let {isWriting, urlToWrite, rtdType} = this.state;
-        if (isWriting) {
-            return;
-        }
-
-        let bytes;
-
-        if (rtdType === RtdType.URL) {
-            bytes = buildUrlPayload(urlToWrite);
-        } else if (rtdType === RtdType.TEXT) {
-            bytes = buildTextPayload(urlToWrite);
-        }
-
-        this.setState({isWriting: true});
-        NfcManager.setNdefPushMessage(bytes)
-            .then(() => console.log('beam request completed'))
-            .catch(err => console.warn(err))
-    }
-
-    _cancelAndroidBeam = () => {
-        this.setState({isWriting: false});
-        NfcManager.setNdefPushMessage(null)
-            .then(() => console.log('beam cancelled'))
-            .catch(err => console.warn(err))
     }
 
     _startNfc() {
@@ -299,18 +181,6 @@ class NFCReader extends Component {
 
     _clearMessages = () => {
         this.setState({tag: null});
-    }
-
-    _goToNfcSetting = () => {
-        if (Platform.OS === 'android') {
-            NfcManager.goToNfcSetting()
-                .then(result => {
-                    console.log('goToNfcSetting OK', result)
-                })
-                .catch(error => {
-                    console.warn('goToNfcSetting fail', error)
-                })
-        }
     }
 
     _parseUri = (tag) => {

@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import NFCReader from './NFCReader'
+import CustomNFCReader from './CustomNFCReader'
 import HomeScreen from './HomeScreen'
 import KittyKeySelect from './KittyKeySelect'
 import PropTypes from 'prop-types'
@@ -14,7 +14,7 @@ class CustomRouter extends Component {
                 return <HomeScreen />
 
             case 'nfcReader':
-                return <NFCReader />
+                return <CustomNFCReader />
 
             case 'kittyKeySelect':
                 return <KittyKeySelect />
@@ -34,7 +34,7 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-    updateCurrentPage: page => dispatch(ACTIONS.updateCurrentPage(page)),  
+    updateCurrentPage: page => dispatch(ACTIONS.updateCurrentPage(page)), 
 })
 
 export default connect(
