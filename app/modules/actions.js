@@ -28,7 +28,7 @@ const handleBackButtonPress = currentPage => {
     } else if (currentPage === 'nfcReader') {
         nextPage = 'home'
     } else if (currentPage === 'home') {
-        // BackHandler.exitApp()
+        BackHandler.exitApp()
     }
     return dispatch => {
         dispatch(updateCurrentPage(nextPage))

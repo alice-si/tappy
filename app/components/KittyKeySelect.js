@@ -6,6 +6,7 @@ import {
     Text,
     StyleSheet,
     TouchableOpacity,
+    Alert
 } from 'react-native'
 import Blockchain from '../blockchain'
 import {connect} from 'react-redux'
@@ -25,15 +26,19 @@ import Sound from 'react-native-sound';
 
 Sound.setCategory('Ambient', true);
 
-const successSound = new Sound(require('../sounds/tada.wav'), error => console.log(error));
-const failureSound = new Sound(require('../sounds/sad.wav'), error => console.log(error))
+let successSound = new Sound(require('../sounds/tada.wav'), error => console.warn(error));
+let failureSound = new Sound(require('../sounds/sad.wav'), error => console.warn(error))
 
 const playSuccess = () => {
-  successSound.play((success) => successSound.reset())
+  successSound.play((success) => {
+    successSound = new Sound(require('../sounds/tada.wav'), error => console.warn(error));
+  })
 }
 
 const playFailure = () => {
-    failureSound.play((success) => failureSound.reset())
+    failureSound.play((success) => {
+        failureSound = new Sound(require('../sounds/sad.wav'), error => console.warn(error))
+    })
 }
 
 const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2})
@@ -86,16 +91,16 @@ class KittyKeySelect extends Component {
                     const cardId = this.props.nfcTagId
 
                     blockchainMethod(cardId.toString(), keyNumber.toString()).then(function() {
-                        // TODO implement nice notifications
-                        console.warn('Blockchain transaction sent successfully')
                         playSuccess()
+                        Alert.alert('Blockchain transaction sent successfully')
                         props.updateCurrentAction('none')
                         props.updateCurrentPage('home')
                     }, function(err) {
                         // TODO Implement nice notification
-                        console.warn(err)
-                        console.warn('Blockchain transaction failed. Please try again')
                         playFailure()
+                        Alert.alert('Blockchain transaction failed. Please try again')
+                        props.updateCurrentAction('none')
+                        props.updateCurrentPage('home')
                     })
                     
                 }}>
