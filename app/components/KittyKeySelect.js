@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import {
-    Alert,
     View,
     ListView,
     Image,
@@ -26,9 +25,15 @@ import Sound from 'react-native-sound';
 
 Sound.setCategory('Ambient', true);
 
-const buttonPress = new Sound(require('../sounds/tada.wav'), error => console.log(error));
-const playButtonPress = () => {
-  buttonPress.play((success) => buttonPress.reset());
+const successSound = new Sound(require('../sounds/tada.wav'), error => console.log(error));
+const failureSound = new Sound(require('../sounds/sad.wav'), error => console.log(error))
+
+const playSuccess = () => {
+  successSound.play((success) => successSound.reset())
+}
+
+const playFailure = () => {
+    failureSound.play((success) => failureSound.reset())
 }
 
 const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2})
@@ -81,14 +86,16 @@ class KittyKeySelect extends Component {
                     const cardId = this.props.nfcTagId
 
                     blockchainMethod(cardId.toString(), keyNumber.toString()).then(function() {
-                        Alert.alert('Blockchain transaction sent successfully')
+                        // TODO implement nice notifications
+                        console.warn('Blockchain transaction sent successfully')
+                        playSuccess()
                         props.updateCurrentAction('none')
                         props.updateCurrentPage('home')
                     }, function(err) {
+                        // TODO Implement nice notification
                         console.warn(err)
-                        Alert.alert('Blockchain transaction failed. Please try again')
-                        props.updateCurrentAction('none')
-                        props.updateCurrentPage('home')
+                        console.warn('Blockchain transaction failed. Please try again')
+                        playFailure()
                     })
                     
                 }}>
