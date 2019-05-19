@@ -24,9 +24,11 @@ const updateCurrentAction = action => ({
 const handleBackButtonPress = currentPage => {
     var nextPage = 'home'
     if (currentPage === 'kittyKeySelect') {
-            nextPage = 'nfcReader'
+        nextPage = 'nfcReader'
+    } else if (currentPage === 'nfcReader') {
+        nextPage = 'home'
     } else if (currentPage === 'home') {
-        BackHandler.exitApp()
+        // BackHandler.exitApp()
     }
     return dispatch => {
         dispatch(updateCurrentPage(nextPage))
