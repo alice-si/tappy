@@ -1,23 +1,16 @@
 // TODO alex
 
 <template>
-  <div class="mdl-grid">
+  <div class="mdl-grid table">
     <div class="mdl-cell mdl-cell--12-col">
-      <h3>Transfers</h3>
+      <h3 class="table-title">Transfers</h3>
     </div>
-    <div class="
-      mdl-cell
-      mdl-cell--2-offset-desktop
-      mdl-cell--6-col-desktop
-      mdl-cell--1-offset-tablet
-      mdl-cell--12-col-tablet
-      mdl-cell--12-col-phone
-      transfers-list">
+    <div class="transfers-list">
       <table class="mdl-list">
-        <tr id="header-line">
-          <td class="header-title">Type</td>
+        <tr id="header-line" class="table-column-title">
+          <td class="header-title" style="width:300px;" colspan="2">Type</td>
           <td class="header-title">Time</td>
-          <td class="header-title">Agent</td>
+
           <td class="header-title">Value</td>
         </tr>
         <Transfer
@@ -63,20 +56,46 @@ export default {
 </script>
 
 <style scoped>
+
+  .table {
+    background-color: white;
+    width: 1000px;
+    border: 1px solid rgba(0,0,0,.125);
+    border-radius: 4px;
+    border-collapse: collapse;
+  }
+
+  .table th, td, tr {
+    border-bottom: 1px solid #ddd !important;
+  }
+
+  .table-title {
+    font-size: 1.8rem;
+    font-weight: 300;
+    line-height: 24px;
+  }
+
+  .table-column-title {
+    font-size: 1.4rem;
+    font-weight: 300;
+    line-height: 24px;
+    color: #9a9a9a;
+  }
+
   .transfers-list {
     /* text-align: center; */
     /* margin: auto; */
   }
 
-  #header-line {
-    background: #1c587a;
-    color: white;
-  }
 
   .header-title {
     padding: 5px;
     width: 15vw;
     border-radius: 3px;
+  }
+
+  .header-line {
+    border-bottom: 1px solid rgba(0,0,0,.125);
   }
 
 

@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import CustomNFCReader from './CustomNFCReader'
+import NFCReader from './NFCReader'
 import HomeScreen from './HomeScreen'
 import KittyKeySelect from './KittyKeySelect'
 import PropTypes from 'prop-types'
@@ -31,6 +32,7 @@ class CustomRouter extends Component {
 
             case 'nfcReader':
                 return <CustomNFCReader />
+                // return <NFCReader />
 
             case 'kittyKeySelect':
                 return <KittyKeySelect />

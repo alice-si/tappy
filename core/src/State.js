@@ -27,7 +27,7 @@ let State = {
     var totalLoaded = 0;
 
     this.state.transfers.forEach((transfer) => {
-      if (transfer.type == 'Card loaded') {
+      if (transfer.type == 'Meal awarded') {
         noLoaded++;
         totalLoaded += Number(transfer.value);
       } else {
@@ -59,7 +59,8 @@ let State = {
       })
 
       EventListener.listenForAnyEvents(async function() {
-        const newBalance = await Blockchain.getBalance()
+        let newBalance = await Blockchain.getBalance()
+        newBalance = Number(newBalance.toPrecision(2));
         //console.log(`New balance = ${newBalance}`)
         prevThis.updateBalance(newBalance)
       })

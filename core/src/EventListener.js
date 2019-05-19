@@ -20,7 +20,7 @@ export default {
 
     contract.on(loadedFilter, (address, hash, value, timestamp) => {
       cb({
-        type: 'Card loaded',
+        type: 'Meal awarded',
         agent: address,
         value: Number(web3.fromWei(value, 'ether')).toPrecision(2),
         timestamp: Number(timestamp)
@@ -29,7 +29,7 @@ export default {
 
     contract.on(unLoadedFilter, (address, hash, value, timestamp) => {
       cb({
-        type: 'Card unloaded',
+        type: 'Meal claimed',
         agent: address,
         value: Number(web3.fromWei(value, 'ether')).toPrecision(2),
         timestamp: Number(timestamp)

@@ -7,6 +7,9 @@ import {
     StyleSheet,
     TouchableOpacity,
 } from 'react-native'
+import Blockchain from '../blockchain'
+import {connect} from 'react-redux'
+import ACTIONS from '../modules/actions'
 
 import kitty1 from '../img/kittykeys/aeon.png'
 import kitty2 from '../img/kittykeys/catzy.png'
@@ -44,20 +47,40 @@ const styles = StyleSheet.create({
     },
     list: {
         flexDirection: 'row',
-        flexWrap: 'wrap'
+        flexWrap: 'wrap',
+        alignItems: 'center',
+        justifyContent: 'center',
     },
 })
 
 class KittyKeySelect extends Component {
 
-    pressKitty() {
-
-    }
-
-    renderKittyKey(keyNumber) {
+    renderKittyKey(keyNumber, props) {
         return (
             <View style={styles.kittyKeyTile}>
-                <TouchableOpacity onPress={this._onPressButton}>
+                <TouchableOpacity onPress={() => {
+                    let blockchainMethod;
+                    if (this.props.currentAction == 'load') {
+                        blockchainMethod = Blockchain.load
+                    } else if ((this.props.currentAction == 'unLoad')) {
+                        blockchainMethod = Blockchain.unload
+                    } else {
+                        throw 'Current action is not supported'
+                    }
+
+                    const cardId = this.props.nfcTagId
+
+                    blockchainMethod(cardId.toString(), keyNumber.toString()).then(function() {
+                        // TODO implement nice notifications
+                        console.warn('Blockchain transaction sent successfully')
+                        props.updateCurrentAction('none')
+                        props.updateCurrentPage('home')
+                    }, function(err) {
+                        // TODO Implement nice notification
+                        console.warn(err)
+                        console.warn('Blockchain transaction failed. Please try again')
+                    })
+                }}>
                     <Image
                     source={keyNumber}
                     style={styles.kittyKeyImage}
@@ -67,12 +90,12 @@ class KittyKeySelect extends Component {
         )
     }
 
-    renderKittyKeys() {
+    renderKittyKeys(props) {
         return (
             <ListView
               contentContainerStyle={styles.list}
               dataSource={dataSource}
-              renderRow={(rowData) => this.renderKittyKey(rowData)}
+              renderRow={(rowData) => this.renderKittyKey(rowData, props)}
             />
         )
     }
@@ -81,10 +104,28 @@ class KittyKeySelect extends Component {
         return (
             <View style={styles.container}>
                 <Text style={styles.titleText}>Pick your Kitty Key!</Text>
-                {this.renderKittyKeys()}
+                {this.renderKittyKeys(this.props)}
             </View>
         )
     }
 }
 
-export default KittyKeySelect
+const mapDispatchToProps = dispatch => ({
+    updateCurrentPage: page => {
+        dispatch(ACTIONS.updateCurrentPage(page))
+    },
+    updateCurrentAction: action => {
+        dispatch(ACTIONS.updateCurrentAction(action))
+    },
+})
+
+const mapStateToProps = state => ({
+    currentPage: state.currentPage,
+    currentAction: state.currentAction,
+    nfcTagId: state.nfcTagId
+})
+
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(KittyKeySelect)

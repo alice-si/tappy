@@ -9,13 +9,17 @@
 
 
     <tr class="transfer-el">
-      <td v-if="details.type == 'Card loaded'">
-        <img src="../../public/Coins.png">
-        {{ details.type }}
+      <td v-if="details.type == 'Meal awarded'" style="width: 60px !important;">
+        <eva-icon name="award-outline" animation="pulse" fill="#6610f2" width="32" height="32" s></eva-icon>
+
       </td>
 
-      <td v-if="details.type != 'Card loaded'">
-        <img src="../../public/bye.png">
+      <td v-if="details.type != 'Meal awarded'">
+        <eva-icon name="car-outline" animation="pulse" fill="#f17105" width="32" height="32"></eva-icon>
+
+      </td>
+
+      <td>
         {{ details.type }}
       </td>
 
@@ -24,12 +28,10 @@
       </td> -->
 
       <td>
-        {{ new Date(details.timestamp * 1000).toISOString() }}
+        {{ new Date(details.timestamp * 1000).toISOString() | moment("from", "now") }}
       </td>
 
-      <td>
-        {{ details.agent }}
-      </td>
+
 
       <td>
         {{ details.value }}
