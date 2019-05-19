@@ -60,7 +60,7 @@ const Blockchain = {
 
     if (receipt.status === 0) {
       console.log('Transaction failed')
-      console.log(receipt)
+      console.warn(receipt)
       throw 'Transaction failed'
     } else {
       console.log('Transaction succeeded')
@@ -70,5 +70,6 @@ const Blockchain = {
   }
 
 };
+
 
 export default Blockchain;

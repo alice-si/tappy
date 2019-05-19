@@ -6,6 +6,7 @@ import {
     Image,
     Button
 } from 'react-native'
+
 import {connect} from 'react-redux'
 import ACTIONS from '../modules/actions'
 
@@ -56,6 +57,7 @@ class HomeScreen extends Component {
                         style={styles.button}
                         onPress={() => {
                             this.props.updateCurrentAction('load')
+                            // this.props.updateCurrentPage('kittyKeySelect')
                             this.props.updateCurrentPage('nfcReader')
                         }}
                         title="LOAD"
@@ -67,7 +69,8 @@ class HomeScreen extends Component {
                     <Button
                         style={styles.button}
                         onPress={() => {
-                            this.props.updateCurrentAction('unload')
+                            this.props.updateCurrentAction('unLoad')
+                            // this.props.updateCurrentPage('kittyKeySelect')
                             this.props.updateCurrentPage('nfcReader')
                         }}
                         title="UNLOAD"
@@ -79,6 +82,8 @@ class HomeScreen extends Component {
         )
     }
 }
+
+
 const mapDispatchToProps = dispatch => ({
     updateCurrentPage: page => {
         dispatch(ACTIONS.updateCurrentPage(page))
@@ -88,7 +93,12 @@ const mapDispatchToProps = dispatch => ({
     },
 })
 
+const mapStateToProps = state => ({
+    currentPage: state.currentPage,
+    currentAction: state.currentAction
+})
+
 export default connect(
-    null,
+    mapStateToProps,
     mapDispatchToProps
 )(HomeScreen)
