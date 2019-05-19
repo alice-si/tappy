@@ -1,7 +1,7 @@
 <template>
-  <div id="balance-container">
-    <h2>{{ balance }} sDai</h2>
-    <p>Contract balance</p>
+  <div class="balance-container" >
+    <h2>{{value}} </h2>
+    <p>{{label}}</p>
   </div>
 </template>
 
@@ -11,23 +11,16 @@ import State from '../State'
 
 export default {
   name: "Balance",
-  data () {
-    return {
-      state: State.state,
-    }
-  },
-  computed: {
-    // TODO maybe move it to data
-    balance () {
-      return Number(web3.fromWei(this.state.balance, 'ether')).toPrecision(2);
-    }
-  },
+  props: {
+    value: Number,
+    label: String
+  }
 };
 </script>
 
 <style>
 
-  #balance-container {
+  .balance-container {
     text-align: center;
     margin: auto;
 
