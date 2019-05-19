@@ -4,6 +4,8 @@ import Dashboard from './views/Dashboard.vue'
 import Donate from './views/Donate.vue'
 import NotFound from './views/NotFound.vue'
 import LoadScript from 'vue-plugin-load-script';
+import EvaIcons from 'vue-eva-icons'
+
 
 // import VuetifyToast from 'vuetify-toast-snackbar'
 
@@ -22,6 +24,8 @@ Vue.use(Tooltip);
 Vue.use(Notifications)
 Vue.use(VueMdl)
 Vue.use(LoadScript)
+Vue.use(EvaIcons)
+Vue.use(require('vue-moment'));
 
 Vue.config.productionTip = false
 
