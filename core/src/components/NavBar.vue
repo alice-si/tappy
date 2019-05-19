@@ -93,4 +93,8 @@ export default {
 .logo {
   padding-right: 15px;
 }
+
+  #nav-bar {
+    margin-bottom: 20px;
+  }
 </style>
