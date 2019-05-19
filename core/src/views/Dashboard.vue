@@ -9,7 +9,7 @@
         <Balance id="noLoaded" :value="state.noLoaded" label="Meals awarded" icon="award-outline" color="#6610f2" suffix="meals"/>
         <Balance id="noUnloaded" :value="state.noUnloaded" label="Meals claimed" icon="car-outline" color="#f17105" suffix="meals"/>
 
-        <Balance id="totalLoaded" :value="state.totalLoaded" label="Funds donated" icon="upload-outline" color="#e6c229" suffix="sDai"/>
+        <Balance id="totalLoaded" :value="state.totalLoaded" label="Funds loaded" icon="upload-outline" color="#e6c229" suffix="sDai"/>
         <Balance id="totalUnloaded" :value="state.totalUnloaded" label="Funds spent" icon="download-outline" color="#e32f52" suffix="sDai"/>
       </div>
       <div class="mdl-cell mdl-cell--10-col">
