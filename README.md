@@ -1,8 +1,11 @@
 ## How to run mobile app?
 
+### Go to the app folder
+`cd app`
+
 ### Prerequisutes
 
-#### [Basic react-native tools](https://facebook.github.io/react-native/docs/getting-started.html)
+#### [Install basic react-native tools](https://facebook.github.io/react-native/docs/getting-started.html)
 - node.js and npm
 - watchman
 - react-native cli

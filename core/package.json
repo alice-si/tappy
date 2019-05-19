@@ -4,10 +4,14 @@
   "private": true,
   "scripts": {
     "serve": "truffle compile && vue-cli-service serve",
+    "test": "truffle test",
+    "ganache": "ganache-cli -i 3 -a 10",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
     "compile": "truffle compile",
-    "deploy": "truffle compile && truffle migrate --network rinkeby --reset"
+    "deploy-kovan": "truffle compile && truffle migrate --network kovan --reset",
+    "deploy-skale": "truffle compile && truffle migrate --network skale --reset",
+    "bridge": "node bridge/job.js"
   },
   "dependencies": {
     "chai": "^4.2.0",
@@ -22,7 +26,9 @@
     "vue-directive-tooltip": "^1.5.1",
     "vue-mdl": "^1.1.1",
     "vue-notification": "^1.3.16",
-    "vuetify-toast-snackbar": "^0.1.6"
+    "vue-plugin-load-script": "^1.2.0",
+    "vuetify-toast-snackbar": "^0.1.6",
+    "web3": "^1.0.0-beta.55"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^3.0.3",

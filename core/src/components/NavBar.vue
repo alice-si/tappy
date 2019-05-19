@@ -7,16 +7,12 @@
         <div class="mdl-layout__header-row">
           <!-- Title -->
           <!-- <span class="mdl-layout-title"><img class="logo" src="../../public/logo.svg" height="48px"/>Homelink</span> -->
-          <span class="mdl-layout-title"><img class="logo" src="../../public/logo.svg" height="48px"/>Homelink</span>
+          <!-- <span class="mdl-layout-title"><img class="logo" src="../../public/logo.svg" height="48px"/>Tappy dashboard</span> -->
+          <span class="mdl-layout-title">Tappy</span>
           <!-- Add spacer, to align navigation to the right -->
           <div class="mdl-layout-spacer"></div>
           <!-- Navigation. We hide it in small screens. -->
           <nav class="mdl-navigation mdl-layout--large-screen-only">
-            <a
-              class="mdl-navigation__link"
-              v-bind:class="{selected: selected == 'wallet'}"
-              href="/wallet"
-            >Wallet</a>
             <!-- <a
               class="mdl-navigation__link"
               v-bind:class="{selected: selected == 'voting'}"
@@ -24,14 +20,16 @@
             >Voting</a> -->
             <a
               class="mdl-navigation__link"
-              v-bind:class="{selected: selected == 'stats'}"
-              href="/stats"
-            >Explore</a>
+              v-bind:class="{selected: selected == 'dashboard'}"
+              onclick="window.location.href = '#dashboard'; window.location.reload()"
+              href="#"
+            >Dashboard</a>
             <a
               class="mdl-navigation__link"
-              v-bind:class="{selected: selected == 'onboard'}"
-              href="/onboard"
-            >Onboard</a>
+              v-bind:class="{selected: selected == 'donate'}"
+              onclick="window.location.href = '#donate'; window.location.reload()"
+              href="#"
+            >Donate with Wyre</a>
           </nav>
         </div>
       </div>
