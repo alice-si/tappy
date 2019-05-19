@@ -26,18 +26,34 @@ import Sound from 'react-native-sound';
 
 Sound.setCategory('Ambient', true);
 
-let successSound = new Sound(require('../sounds/tada.wav'), error => console.warn(error));
-let failureSound = new Sound(require('../sounds/sad.wav'), error => console.warn(error))
+// const tadaUrl = '../sounds/tada.wav';
+// const sadUrl = '../sounds/sad.wav';
+
+const tadaUrl = 'https://s3.eu-west-2.amazonaws.com/alice-res/tada.wav';
+const sadUrl = 'https://s3.eu-west-2.amazonaws.com/alice-res/sad.wav';
+
+function getTadaSound() {
+    // return new Sound(require('../sounds/tada.wav'), error => console.warn(error));
+    return new Sound(tadaUrl, null, error => console.warn(error));
+}
+
+function getSadSound() {
+    // return new Sound(require('../sounds/sad.wav'), error => console.warn(error))
+    return new Sound(sadUrl, null, error => console.warn(error));
+}
+
+let successSound = getTadaSound()
+let failureSound = getSadSound()
 
 const playSuccess = () => {
   successSound.play((success) => {
-    successSound = new Sound(require('../sounds/tada.wav'), error => console.warn(error));
+    successSound = getTadaSound()
   })
 }
 
 const playFailure = () => {
     failureSound.play((success) => {
-        failureSound = new Sound(require('../sounds/sad.wav'), error => console.warn(error))
+        failureSound = getSadSound()
     })
 }
 
