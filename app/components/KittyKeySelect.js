@@ -21,6 +21,15 @@ import kitty7 from '../img/kittykeys/purrocious.png'
 import kitty8 from '../img/kittykeys/Spacecat.png'
 import kitty9 from '../img/kittykeys/Sparkles.png'
 
+import Sound from 'react-native-sound';
+
+Sound.setCategory('Ambient', true);
+
+const buttonPress = new Sound(require('../sounds/tada.wav'), error => console.log(error));
+const playButtonPress = () => {
+  buttonPress.play((success) => buttonPress.reset());
+}
+
 const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2})
 let dataSource = ds.cloneWithRows([kitty1, kitty2, kitty3, kitty4, kitty5, kitty6, kitty7, kitty8, kitty9])
 
@@ -80,6 +89,7 @@ class KittyKeySelect extends Component {
                         console.warn(err)
                         console.warn('Blockchain transaction failed. Please try again')
                     })
+                    
                 }}>
                     <Image
                     source={keyNumber}

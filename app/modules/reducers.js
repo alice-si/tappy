@@ -3,7 +3,7 @@ import _ from 'lodash'
 
 const defaultState = {
     nfcTagId: {},
-    currentPage: 'home',
+    currentPage: 'kittyKeySelect',
     currentAction: 'none',
 }
 
