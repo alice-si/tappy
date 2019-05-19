@@ -3,8 +3,9 @@ import _ from 'lodash'
 
 
 const defaultState = {
-    currentPage: 'nfcReader',
     nfcTagId: {},
+    currentPage: 'home',
+    currentAction: 'none',
 }
 
 const reducer = (state = defaultState, action) => {
@@ -18,6 +19,12 @@ const reducer = (state = defaultState, action) => {
         case ACTIONS.Types.SET_NFC_TAG_ID: {
             let newState = _.cloneDeep(state)
             newState.nfcTagId = action.payload
+            return newState
+        }
+
+        case ACTIONS.Types.UPDATE_CURRENT_ACTION: {
+            let newState = _.cloneDeep(state)
+            newState.currentAction = action.payload
             return newState
         }
 
