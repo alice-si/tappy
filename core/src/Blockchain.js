@@ -32,7 +32,7 @@ export default {
   },
 
   async getBalance() {
-    console.log("Getting balance");
+    //console.log("Getting balance");
     const from = await this.account()
     const balance = await this.contract().getAvailableAssets({ from })
     return  Number(balance)
