@@ -9,6 +9,7 @@ import ACTIONS from '../modules/actions'
 class CustomRouter extends Component {
     render () {
         const { currentPage } = this.props
+
         switch(currentPage) {
             case 'home': 
                 return <HomeScreen />
