@@ -7,8 +7,8 @@
         <div class="mdl-layout__header-row">
           <!-- Title -->
           <!-- <span class="mdl-layout-title"><img class="logo" src="../../public/logo.svg" height="48px"/>Homelink</span> -->
-          <!-- <span class="mdl-layout-title"><img class="logo" src="../../public/logo.svg" height="48px"/>Tappy dashboard</span> -->
-          <span class="mdl-layout-title">Tappy</span>
+          <span class="mdl-layout-title tappy-title"><img class="logo" src="../../public/tappy-logo.png" height="72px"/>Tappy</span>
+          <!--<span class="mdl-layout-title">Tappy</span>-->
           <!-- Add spacer, to align navigation to the right -->
           <div class="mdl-layout-spacer"></div>
           <!-- Navigation. We hide it in small screens. -->
@@ -71,6 +71,10 @@ export default {
  background-color: #1c587a;
 }
 
+.tappy-title {
+  font-size: 24px;
+}
+
 .mdl-navigation__link {
   font-size: 16px;
   letter-spacing: 0.5px;
@@ -83,7 +87,7 @@ export default {
 }
 
 .navbarcolour {
- background-color: #184E6D !important;
+ background-color: #1a8fe3 !important;
 }
 
 .logo {
