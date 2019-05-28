@@ -4,7 +4,11 @@ import {
     Text,
     StyleSheet,
     Image,
-    Button
+    Button,
+    TouchableHighlight,
+    TouchableOpacity,
+    TouchableNativeFeedback,
+    TouchableWithoutFeedback
 } from 'react-native'
 
 import {connect} from 'react-redux'
@@ -18,6 +22,8 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         color: '#e32f52',
         fontFamily: 'Comfortaa',
+        marginTop: '10%',
+        marginBottom: '20%'  
     },
     container: {
         flex: 1,
@@ -25,19 +31,16 @@ const styles = StyleSheet.create({
         // justifyContent: 'center',
         // backgroundColor: '#6610f2',
     },
-    logo: {
-        width: "60%",
-        height: "60%",
-        marginBottom: "5%"
-    },
-    buttonContainer: {
-        width: "80%",
-        // height: 100,
-        marginTop: 10,
-    },
     button: {
-        fontSize: 20
-
+        marginBottom: 30,
+        width: 260,
+        alignItems: 'center',
+        backgroundColor: '#1a8fe3'
+    },
+    buttonText: {
+        padding: '20%',
+        color: 'white',
+        fontSize: 30
     }
 })
 
@@ -47,36 +50,32 @@ class HomeScreen extends Component {
         return (
             <View style={styles.container}>
                 <Text style={styles.titleText}>Tappy</Text>
-                <Image
-                    source={logo}
-                    style={styles.logo}
-                />
 
-                <View style={styles.buttonContainer}>
-                    <Button
-                        style={styles.button}
-                        onPress={() => {
-                            this.props.updateCurrentAction('load')
-                            // this.props.updateCurrentPage('kittyKeySelect')
-                            this.props.updateCurrentPage('nfcReader')
-                        }}
-                        title="LOAD"
-                        color="#1a8fe3"
-                    />
-                </View>
+                <TouchableHighlight
+                    underlayColor="white"
+                    onPress={() => {
+                        this.props.updateCurrentAction('load')
+                        // this.props.updateCurrentPage('kittyKeySelect')
+                        this.props.updateCurrentPage('nfcReader')
+                    }}
+                >
+                    <View style={styles.button}>
+                        <Text style={styles.buttonText}>LOAD</Text>
+                    </View>
+                </TouchableHighlight>
 
-                <View style={styles.buttonContainer}>
-                    <Button
-                        style={styles.button}
-                        onPress={() => {
-                            this.props.updateCurrentAction('unLoad')
-                            // this.props.updateCurrentPage('kittyKeySelect')
-                            this.props.updateCurrentPage('nfcReader')
-                        }}
-                        title="UNLOAD"
-                        color="#1a8fe3"
-                    />
-                </View>
+                <TouchableHighlight
+                    underlayColor="white"
+                    onPress={() => {
+                        this.props.updateCurrentAction('unLoad')
+                        // this.props.updateCurrentPage('kittyKeySelect')
+                        this.props.updateCurrentPage('nfcReader')
+                    }}
+                >
+                    <View style={styles.button}>
+                        <Text style={styles.buttonText}>UNLOAD</Text>
+                    </View>
+                </TouchableHighlight>
  
             </View>
         )
