@@ -6,11 +6,13 @@ import {
     Text,
     StyleSheet,
     TouchableOpacity,
+    ActivityIndicator,
     Alert
 } from 'react-native'
 import Blockchain from '../blockchain'
 import {connect} from 'react-redux'
 import ACTIONS from '../modules/actions'
+import Toast from 'react-native-simple-toast'
 
 import kitty1 from '../img/kittykeys/aeon.png'
 import kitty2 from '../img/kittykeys/catzy.png'
@@ -23,6 +25,7 @@ import kitty8 from '../img/kittykeys/Spacecat.png'
 import kitty9 from '../img/kittykeys/Sparkles.png'
 
 import Sound from 'react-native-sound';
+import StatusBar from './StatusBar';
 
 Sound.setCategory('Ambient', true);
 
@@ -91,10 +94,20 @@ const styles = StyleSheet.create({
 
 class KittyKeySelect extends Component {
 
+    constructor(props) {
+        super(props)
+        this.state = { spinner: false }
+    }
+
     renderKittyKey(keyNumber, props) {
         return (
             <View style={styles.kittyKeyTile}>
                 <TouchableOpacity onPress={() => {
+                    this.setState(previousState => ({
+                        spinner: true
+                    }))
+                    Toast.show('Sending blockchain transaction...', Toast.SHORT)
+
                     let blockchainMethod;
                     if (this.props.currentAction == 'load') {
                         blockchainMethod = Blockchain.load
@@ -108,15 +121,16 @@ class KittyKeySelect extends Component {
 
                     blockchainMethod(cardId.toString(), keyNumber.toString()).then(function() {
                         playSuccess()
-                        Alert.alert('Blockchain transaction sent successfully')
+                        Toast.show('Blockchain transaction sent successfully', Toast.SHORT)
                         props.updateCurrentAction('none')
                         props.updateCurrentPage('home')
+                        this.setState(() => {spinner: false})
                     }, function(err) {
-                        // TODO Implement nice notification
                         playFailure()
-                        Alert.alert('Blockchain transaction failed. Please try again')
+                        Toast.show('Blockchain transaction failed. Please try again', Toast.SHORT)
                         props.updateCurrentAction('none')
                         props.updateCurrentPage('home')
+                        this.setState(() => {spinner: false})
                     })
                     
                 }}>
@@ -139,10 +153,22 @@ class KittyKeySelect extends Component {
         )
     }
 
+    renderLoader(props) {
+        if (this.state.spinner) {
+            return (
+                <ActivityIndicator size="large" color="#0000ff" />
+            )
+        } else {
+            return null
+        }
+    }
+
     render () {
         return (
             <View style={styles.container}>
-                <Text style={styles.titleText}>Pick your Kitty Key!</Text>
+                <Text style={styles.titleText}>Pick your kitty key</Text>
+                <StatusBar />
+                {this.renderLoader(this.props)}
                 {this.renderKittyKeys(this.props)}
             </View>
         )

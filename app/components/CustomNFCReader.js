@@ -13,7 +13,7 @@ import ACTIONS from '../modules/actions'
 import PropTypes from 'prop-types'
 import NfcManager from 'react-native-nfc-manager'
 
-import Toast from 'react-native-simple-toast';
+import Toast from 'react-native-simple-toast'
 
 import tapImage from '../img/tap/tap.png'
 
@@ -91,7 +91,7 @@ class CustomNFCReader extends Component {
     }
 
     _processTag = tag => {
-        Toast.show("Nfc tag discovered: " + tag)
+        Toast.show("Nfc tag discovered: " + tag, Toast.SHORT)
         this.props.setNFCTagId(tag)
         this.props.updateCurrentPage('kittyKeySelect')
     }
