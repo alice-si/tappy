@@ -1,28 +1,35 @@
 import React, { Component } from 'react'
 import {
     Text,
+    Image,
     StyleSheet,
     View,
     Platform,
+    TouchableWithoutFeedback
 } from 'react-native'
+import StatusBar from './StatusBar'
 import { connect } from 'react-redux'
 import ACTIONS from '../modules/actions'
 import PropTypes from 'prop-types'
-import NfcManager from 'react-native-nfc-manager';
+import NfcManager from 'react-native-nfc-manager'
+
+import Toast from 'react-native-simple-toast';
+
+import tapImage from '../img/tap/tap.png'
 
 const styles = StyleSheet.create({
 
-    titleText: {
-        fontSize: 50,
-        fontWeight: 'bold',
-        color: '#e32f52',
-        fontFamily: 'Comfortaa',
-    },
+    // titleText: {
+    //     fontSize: 50,
+    //     fontWeight: 'bold',
+    //     color: '#e32f52',
+    //     fontFamily: 'Comfortaa',
+    // },
     container: {
         flex: 1,
         alignItems: 'center',
         justifyContent: 'center',
-        backgroundColor: '#e6c229',
+        // backgroundColor: '#e6c229',
     },
 })
 
@@ -82,9 +89,15 @@ class CustomNFCReader extends Component {
             })
         }
     }
-    _onTagDiscovered = tag => {
-        this.props.setNFCTagId(tag.id)
+
+    _processTag = tag => {
+        Toast.show("Nfc tag discovered: " + tag)
+        this.props.setNFCTagId(tag)
         this.props.updateCurrentPage('kittyKeySelect')
+    }
+
+    _onTagDiscovered = tag => {
+        this._processTag(tag.id)
     }
 
     _startDetection = () => {
@@ -105,7 +118,21 @@ class CustomNFCReader extends Component {
     render() {        
         return (
             <View style={styles.container}>
-                <Text style={styles.titleText}>Tapp!</Text>
+                <TouchableWithoutFeedback
+                    underlayColor="white"
+                    onLongPress={() => {
+                        const todayTag = Math.round(Date.now() / (24 * 3600 * 1000)).toString() // Timestamp tag for today
+                        this._processTag(todayTag)
+                    }}
+                >
+                    <View>
+                        <Image
+                            source={tapImage}
+                        />
+                        {/* <Text style={styles.titleText}>Tapp!</Text> */}
+                    </View>
+                </TouchableWithoutFeedback>
+                <StatusBar />
             </View>
         )
     }
