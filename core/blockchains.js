@@ -50,6 +50,12 @@ function Blockchains() {
     return tokens[network];
   };
 
+  this.getReceipt = function(network, hash) {
+    providers[network].getTransactionReceipt(hash).then((receipt) => {
+      console.log(receipt);
+    })
+  };
+
   this.printBlockNumber = function(network) {
     providers[network].getBlockNumber().then((blockNumber) => {
       console.log("Current " + network  + " block number: " + blockNumber);
@@ -90,6 +96,7 @@ function Blockchains() {
     let value = ethers.utils.parseEther(rawValue);
     manager.load(prepareHash(cardId, secret), value).then((tx) => {
       console.log("Loaded card:  " + cardId + " with " + rawValue + " : " + tx.hash);
+      console.log(tx);
     });
   };
 
