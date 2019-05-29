@@ -1,9 +1,13 @@
-package com.alnfc;
+package com.tappy;
 
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
+import com.tradle.react.UdpSocketsModule;
+import com.peel.react.TcpSocketsModule;
 import com.zmxv.RNSound.RNSoundPackage;
+import com.bitgo.randombytes.RandomBytesPackage;
+import com.peel.react.rnos.RNOSModule;
 import community.revteltech.nfc.NfcManagerPackage;
 import com.facebook.react.ReactNativeHost;
 import com.facebook.react.ReactPackage;
@@ -25,7 +29,11 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
+            new UdpSocketsModule(),
+            new TcpSocketsModule(),
             new RNSoundPackage(),
+            new RandomBytesPackage(),
+            new RNOSModule(),
             new NfcManagerPackage()
       );
     }

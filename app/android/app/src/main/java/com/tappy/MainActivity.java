@@ -1,4 +1,4 @@
-package com.alnfc;
+package com.tappy;
 
 import com.facebook.react.ReactActivity;
 
@@ -10,6 +10,6 @@ public class MainActivity extends ReactActivity {
      */
     @Override
     protected String getMainComponentName() {
-        return "ALNFC";
+        return "Tappy";
     }
 }
