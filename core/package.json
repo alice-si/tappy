@@ -1,5 +1,5 @@
 {
-  "name": "social-housing",
+  "name": "Tappy",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -11,7 +11,7 @@
     "compile": "truffle compile",
     "deploy-kovan": "truffle compile && truffle migrate --network kovan --reset",
     "deploy-skale": "truffle compile && truffle migrate --network skale --reset",
-    "bridge": "node bridge/job.js"
+    "bridge": "node bridge.js"
   },
   "dependencies": {
     "chai": "^4.2.0",
