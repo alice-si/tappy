@@ -102,7 +102,7 @@ android {
     }
 
     defaultConfig {
-        applicationId "com.tappy"
+        applicationId "com.alicesitappy"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
