@@ -39,14 +39,14 @@
 		ADBDB9381DFEBF1600ED6528 /* libRCTBlob.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ADBDB9271DFEBF0700ED6528 /* libRCTBlob.a */; };
 		ED297163215061F000B7C4FE /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED297162215061F000B7C4FE /* JavaScriptCore.framework */; };
 		ED2971652150620600B7C4FE /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED2971642150620600B7C4FE /* JavaScriptCore.framework */; };
-		EC57ED26EDBC4FCFAF91B93D /* libNfcManager.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F3206A0590F846CFBB99C28B /* libNfcManager.a */; };
-		B69B148772B24812A0F5E960 /* libRNOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 57C6909968D7409BAD449CCB /* libRNOS.a */; };
-		969B3AA2E3C74E05A376C26E /* libRNRandomBytes.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 208BFE9D4DE4466AB08C3952 /* libRNRandomBytes.a */; };
-		15977ECB7B534C3C962F13B1 /* libRNRandomBytes-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A704F7AD03334A268898738E /* libRNRandomBytes-tvOS.a */; };
-		F64B58EEAE634E268C48AB35 /* libLRDRCTSimpleToast.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2050B79CBA1C445A99B77F25 /* libLRDRCTSimpleToast.a */; };
-		CD5D72D1034047BC99A910FD /* libRNSound.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 79D5C201BE1845EFABA4A2EB /* libRNSound.a */; };
-		5AC73069F7E24742824C937F /* libTcpSockets.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 108BFD72F0F34E9794114DCE /* libTcpSockets.a */; };
-		641236A2362C463993EC2EF9 /* libUdpSockets.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C6FDD7540B2B49FB85128408 /* libUdpSockets.a */; };
+		35F716B800054B8F9B43889E /* libNfcManager.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1472750DDFB14DC78F1B7B01 /* libNfcManager.a */; };
+		5D0BA42C54414B53A6737573 /* libRNOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 691B95807BDB494AAFDBD18F /* libRNOS.a */; };
+		65C350451D79435FB275285F /* libRNRandomBytes.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F8C2512F0A5D4ED1A421608D /* libRNRandomBytes.a */; };
+		EF59379A6B244040911EA023 /* libRNRandomBytes-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 38F46986580743999ED46691 /* libRNRandomBytes-tvOS.a */; };
+		1AAB692E8B7F484380322176 /* libLRDRCTSimpleToast.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 76C93F93CC064429A4A60111 /* libLRDRCTSimpleToast.a */; };
+		6814E752610945C280341FB2 /* libRNSound.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FB3D7A58015D42C2AFBC10A9 /* libRNSound.a */; };
+		D2CAFD43A1AC4D26BD8FE16F /* libTcpSockets.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C20DEBA5C07543348FFEE498 /* libTcpSockets.a */; };
+		86510C38A41849DFBFA535C1 /* libUdpSockets.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C3D0EAF92417484EB9A74849 /* libUdpSockets.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -354,21 +354,21 @@
 		ADBDB91F1DFEBF0600ED6528 /* RCTBlob.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTBlob.xcodeproj; path = "../node_modules/react-native/Libraries/Blob/RCTBlob.xcodeproj"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		ED2971642150620600B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS12.0.sdk/System/Library/Frameworks/JavaScriptCore.framework; sourceTree = DEVELOPER_DIR; };
-		D977A3AE0F0345168DC9F17E /* NfcManager.xcodeproj */ = {isa = PBXFileReference; name = "NfcManager.xcodeproj"; path = "../node_modules/react-native-nfc-manager/ios/NfcManager.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
-		F3206A0590F846CFBB99C28B /* libNfcManager.a */ = {isa = PBXFileReference; name = "libNfcManager.a"; path = "libNfcManager.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
-		FBB818B85EE045ABB00857CC /* RNOS.xcodeproj */ = {isa = PBXFileReference; name = "RNOS.xcodeproj"; path = "../node_modules/react-native-os/ios/RNOS.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
-		57C6909968D7409BAD449CCB /* libRNOS.a */ = {isa = PBXFileReference; name = "libRNOS.a"; path = "libRNOS.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
-		43D6770B72A541378522EF70 /* RNRandomBytes.xcodeproj */ = {isa = PBXFileReference; name = "RNRandomBytes.xcodeproj"; path = "../node_modules/react-native-randombytes/RNRandomBytes.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
-		208BFE9D4DE4466AB08C3952 /* libRNRandomBytes.a */ = {isa = PBXFileReference; name = "libRNRandomBytes.a"; path = "libRNRandomBytes.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
-		A704F7AD03334A268898738E /* libRNRandomBytes-tvOS.a */ = {isa = PBXFileReference; name = "libRNRandomBytes-tvOS.a"; path = "libRNRandomBytes-tvOS.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
-		59B396924C7046B49F76AE06 /* LRDRCTSimpleToast.xcodeproj */ = {isa = PBXFileReference; name = "LRDRCTSimpleToast.xcodeproj"; path = "../node_modules/react-native-simple-toast/ios/LRDRCTSimpleToast.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
-		2050B79CBA1C445A99B77F25 /* libLRDRCTSimpleToast.a */ = {isa = PBXFileReference; name = "libLRDRCTSimpleToast.a"; path = "libLRDRCTSimpleToast.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
-		C95FAAA636444540A3B231AE /* RNSound.xcodeproj */ = {isa = PBXFileReference; name = "RNSound.xcodeproj"; path = "../node_modules/react-native-sound/RNSound.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
-		79D5C201BE1845EFABA4A2EB /* libRNSound.a */ = {isa = PBXFileReference; name = "libRNSound.a"; path = "libRNSound.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
-		0239982092BF4402A22473CA /* TcpSockets.xcodeproj */ = {isa = PBXFileReference; name = "TcpSockets.xcodeproj"; path = "../node_modules/react-native-tcp/ios/TcpSockets.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
-		108BFD72F0F34E9794114DCE /* libTcpSockets.a */ = {isa = PBXFileReference; name = "libTcpSockets.a"; path = "libTcpSockets.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
-		0C0B739D0967422AAA534AAA /* UdpSockets.xcodeproj */ = {isa = PBXFileReference; name = "UdpSockets.xcodeproj"; path = "../node_modules/react-native-udp/ios/UdpSockets.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
-		C6FDD7540B2B49FB85128408 /* libUdpSockets.a */ = {isa = PBXFileReference; name = "libUdpSockets.a"; path = "libUdpSockets.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
+		AB17540926DE4B03A4DB422A /* NfcManager.xcodeproj */ = {isa = PBXFileReference; name = "NfcManager.xcodeproj"; path = "../node_modules/react-native-nfc-manager/ios/NfcManager.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
+		1472750DDFB14DC78F1B7B01 /* libNfcManager.a */ = {isa = PBXFileReference; name = "libNfcManager.a"; path = "libNfcManager.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
+		671F1C03FCCC4310865F6BC9 /* RNOS.xcodeproj */ = {isa = PBXFileReference; name = "RNOS.xcodeproj"; path = "../node_modules/react-native-os/ios/RNOS.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
+		691B95807BDB494AAFDBD18F /* libRNOS.a */ = {isa = PBXFileReference; name = "libRNOS.a"; path = "libRNOS.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
+		15F6256C45464DE0B55DA897 /* RNRandomBytes.xcodeproj */ = {isa = PBXFileReference; name = "RNRandomBytes.xcodeproj"; path = "../node_modules/react-native-randombytes/RNRandomBytes.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
+		F8C2512F0A5D4ED1A421608D /* libRNRandomBytes.a */ = {isa = PBXFileReference; name = "libRNRandomBytes.a"; path = "libRNRandomBytes.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
+		38F46986580743999ED46691 /* libRNRandomBytes-tvOS.a */ = {isa = PBXFileReference; name = "libRNRandomBytes-tvOS.a"; path = "libRNRandomBytes-tvOS.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
+		B6FFCB46F2BB4769831E12ED /* LRDRCTSimpleToast.xcodeproj */ = {isa = PBXFileReference; name = "LRDRCTSimpleToast.xcodeproj"; path = "../node_modules/react-native-simple-toast/ios/LRDRCTSimpleToast.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
+		76C93F93CC064429A4A60111 /* libLRDRCTSimpleToast.a */ = {isa = PBXFileReference; name = "libLRDRCTSimpleToast.a"; path = "libLRDRCTSimpleToast.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
+		0F2F275E9E07442E9EF1EC2B /* RNSound.xcodeproj */ = {isa = PBXFileReference; name = "RNSound.xcodeproj"; path = "../node_modules/react-native-sound/RNSound.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
+		FB3D7A58015D42C2AFBC10A9 /* libRNSound.a */ = {isa = PBXFileReference; name = "libRNSound.a"; path = "libRNSound.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
+		05BE069A07DE412FAC829FA1 /* TcpSockets.xcodeproj */ = {isa = PBXFileReference; name = "TcpSockets.xcodeproj"; path = "../node_modules/react-native-tcp/ios/TcpSockets.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
+		C20DEBA5C07543348FFEE498 /* libTcpSockets.a */ = {isa = PBXFileReference; name = "libTcpSockets.a"; path = "libTcpSockets.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
+		182A51E2931A4D3888BBEC01 /* UdpSockets.xcodeproj */ = {isa = PBXFileReference; name = "UdpSockets.xcodeproj"; path = "../node_modules/react-native-udp/ios/UdpSockets.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
+		C3D0EAF92417484EB9A74849 /* libUdpSockets.a */ = {isa = PBXFileReference; name = "libUdpSockets.a"; path = "libUdpSockets.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -397,13 +397,13 @@
 				832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */,
 				00C302EA1ABCBA2D00DB3ED1 /* libRCTVibration.a in Frameworks */,
 				139FDEF61B0652A700C62182 /* libRCTWebSocket.a in Frameworks */,
-				EC57ED26EDBC4FCFAF91B93D /* libNfcManager.a in Frameworks */,
-				B69B148772B24812A0F5E960 /* libRNOS.a in Frameworks */,
-				969B3AA2E3C74E05A376C26E /* libRNRandomBytes.a in Frameworks */,
-				F64B58EEAE634E268C48AB35 /* libLRDRCTSimpleToast.a in Frameworks */,
-				CD5D72D1034047BC99A910FD /* libRNSound.a in Frameworks */,
-				5AC73069F7E24742824C937F /* libTcpSockets.a in Frameworks */,
-				641236A2362C463993EC2EF9 /* libUdpSockets.a in Frameworks */,
+				35F716B800054B8F9B43889E /* libNfcManager.a in Frameworks */,
+				5D0BA42C54414B53A6737573 /* libRNOS.a in Frameworks */,
+				65C350451D79435FB275285F /* libRNRandomBytes.a in Frameworks */,
+				1AAB692E8B7F484380322176 /* libLRDRCTSimpleToast.a in Frameworks */,
+				6814E752610945C280341FB2 /* libRNSound.a in Frameworks */,
+				D2CAFD43A1AC4D26BD8FE16F /* libTcpSockets.a in Frameworks */,
+				86510C38A41849DFBFA535C1 /* libUdpSockets.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -420,7 +420,7 @@
 				2D02E4C61E0B4AEC006451C7 /* libRCTSettings-tvOS.a in Frameworks */,
 				2D02E4C71E0B4AEC006451C7 /* libRCTText-tvOS.a in Frameworks */,
 				2D02E4C81E0B4AEC006451C7 /* libRCTWebSocket-tvOS.a in Frameworks */,
-				15977ECB7B534C3C962F13B1 /* libRNRandomBytes-tvOS.a in Frameworks */,
+				EF59379A6B244040911EA023 /* libRNRandomBytes-tvOS.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -594,13 +594,13 @@
 				832341B01AAA6A8300B99B32 /* RCTText.xcodeproj */,
 				00C302DF1ABCB9EE00DB3ED1 /* RCTVibration.xcodeproj */,
 				139FDEE61B06529A00C62182 /* RCTWebSocket.xcodeproj */,
-				D977A3AE0F0345168DC9F17E /* NfcManager.xcodeproj */,
-				FBB818B85EE045ABB00857CC /* RNOS.xcodeproj */,
-				43D6770B72A541378522EF70 /* RNRandomBytes.xcodeproj */,
-				59B396924C7046B49F76AE06 /* LRDRCTSimpleToast.xcodeproj */,
-				C95FAAA636444540A3B231AE /* RNSound.xcodeproj */,
-				0239982092BF4402A22473CA /* TcpSockets.xcodeproj */,
-				0C0B739D0967422AAA534AAA /* UdpSockets.xcodeproj */,
+				AB17540926DE4B03A4DB422A /* NfcManager.xcodeproj */,
+				671F1C03FCCC4310865F6BC9 /* RNOS.xcodeproj */,
+				15F6256C45464DE0B55DA897 /* RNRandomBytes.xcodeproj */,
+				B6FFCB46F2BB4769831E12ED /* LRDRCTSimpleToast.xcodeproj */,
+				0F2F275E9E07442E9EF1EC2B /* RNSound.xcodeproj */,
+				05BE069A07DE412FAC829FA1 /* TcpSockets.xcodeproj */,
+				182A51E2931A4D3888BBEC01 /* UdpSockets.xcodeproj */,
 			);
 			name = Libraries;
 			sourceTree = "<group>";
