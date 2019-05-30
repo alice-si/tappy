@@ -7,3 +7,11 @@ Tappy makes it easy to load and unload crypto assets into any object equipped wi
 - Bridge [core/bridge.js](core/bridge.js)
 - React native mobile app [app/App.js](app/App.js)
 - Dapp (dashboard) [core/src/main.js](core/src/main.js)
+
+## Download app
+- [Google play link](https://play.google.com/store/apps/details?id=com.alicesitappy)
+
+## Check our dashboard
+- Go to https://tappy.alice.si/
+- To donate with Wyre please set up Metamask to use Kovan network
+- To see the dashboard please connect to Skale (endpoint: http://157.230.154.5:8046)

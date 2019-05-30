@@ -36,12 +36,10 @@ const tadaUrl = 'https://s3.eu-west-2.amazonaws.com/alice-res/tada.wav';
 const sadUrl = 'https://s3.eu-west-2.amazonaws.com/alice-res/sad.wav';
 
 function getTadaSound() {
-    // return new Sound(require('../sounds/tada.wav'), error => console.warn(error));
     return new Sound(tadaUrl, null, error => console.warn(error));
 }
 
 function getSadSound() {
-    // return new Sound(require('../sounds/sad.wav'), error => console.warn(error))
     return new Sound(sadUrl, null, error => console.warn(error));
 }
 
@@ -97,17 +95,12 @@ class KittyKeySelect extends Component {
     constructor(props) {
         super(props)
         this.state = { spinner: false }
-        console.log('MY LOG ------------------------------- pressed')
-        console.log(this.props.nfcTagId)
     }
 
     renderKittyKey(keyNumber, props) {
         return (
-            <View  style={styles.kittyKeyTile}>
+            <View style={styles.kittyKeyTile}>
                 <TouchableOpacity onPress={() => {
-                    console.warn('MY LOG ------------------------------- pressed')
-                    console.log(this.props.nfcTagId)
-
                     this.setState(previousState => ({
                         spinner: true
                     }))
@@ -131,11 +124,12 @@ class KittyKeySelect extends Component {
                         props.updateCurrentPage('home')
                         this.setState(() => {spinner: false})
                     }, function(err) {
+                        console.error(err)
                         playFailure()
+                        this.setState(() => {spinner: false})
                         Toast.show('Blockchain transaction failed. Please try again', Toast.SHORT)
                         props.updateCurrentAction('none')
                         props.updateCurrentPage('home')
-                        this.setState(() => {spinner: false})
                     })
                     
                 }}>
@@ -164,13 +158,13 @@ class KittyKeySelect extends Component {
                 <ActivityIndicator size="large" color="#0000ff" />
             )
         } else {
-            <ActivityIndicator color="#0000ff" />
+            return (<View/>)
         }
     }
 
     render () {
         return (
-            <View style={styles.container} >
+            <View style={styles.container}>
                 <Text style={styles.titleText}>Pick your kitty key</Text>
                 <StatusBar />
                 {this.renderLoader(this.props)}
