@@ -124,12 +124,12 @@ class KittyKeySelect extends Component {
                         props.updateCurrentPage('home')
                         this.setState(() => {spinner: false})
                     }, function(err) {
-                        console.error(err)
                         playFailure()
-                        this.setState(() => {spinner: false})
                         Toast.show('Blockchain transaction failed. Please try again', Toast.SHORT)
                         props.updateCurrentAction('none')
                         props.updateCurrentPage('home')
+                        console.log(err)
+                        this.setState(() => {spinner: false})
                     })
                     
                 }}>
