@@ -97,12 +97,17 @@ class KittyKeySelect extends Component {
     constructor(props) {
         super(props)
         this.state = { spinner: false }
+        console.log('MY LOG ------------------------------- pressed')
+        console.log(this.props.nfcTagId)
     }
 
     renderKittyKey(keyNumber, props) {
         return (
-            <View style={styles.kittyKeyTile}>
+            <View  style={styles.kittyKeyTile}>
                 <TouchableOpacity onPress={() => {
+                    console.warn('MY LOG ------------------------------- pressed')
+                    console.log(this.props.nfcTagId)
+
                     this.setState(previousState => ({
                         spinner: true
                     }))
@@ -159,13 +164,13 @@ class KittyKeySelect extends Component {
                 <ActivityIndicator size="large" color="#0000ff" />
             )
         } else {
-            return null
+            <ActivityIndicator color="#0000ff" />
         }
     }
 
     render () {
         return (
-            <View style={styles.container}>
+            <View style={styles.container} >
                 <Text style={styles.titleText}>Pick your kitty key</Text>
                 <StatusBar />
                 {this.renderLoader(this.props)}

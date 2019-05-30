@@ -33,3 +33,6 @@ react-native link
 
 - https://facebook.github.io/react-native/docs/signed-apk-android
 - https://medium.com/@impaachu/react-native-android-release-build-crash-on-device-14f2c9eacf18
+
+## To add or update app icon
+- https://medium.com/@scottianstewart/react-native-add-app-icons-and-launch-screens-onto-ios-and-android-apps-3bfbc20b7d4c
