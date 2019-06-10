@@ -6,7 +6,7 @@ import Web3 from 'web3';
 
 
 const MNEMONIC = "turtle enforce elbow glow trap garbage private maximum sail hole wire half";
-const MANAGER_CONTRACT_ADDRESS = '0x14ABE122Ba65955a892412bbB89F083D100F2Ce5';
+const MANAGER_CONTRACT_ADDRESS = '0xFd21DE119266Fc442cEFF47119B0dB0f530736d6';
 const DEFAULT_AMOUNT = '2.0';
 
 // const ADDRESS = '0xD0e7083A32c61f28CD0d713C47A2611e1c2dadC9'; // <- it is unused
@@ -14,7 +14,7 @@ const DEFAULT_AMOUNT = '2.0';
 // const PRIVATE_KEY = 'A88259AE882B0A60D82FD00F809078512A1F16285D0ED9824F5C2D516C26EFB4'; // <- it is unused
 
 
-const provider = new ethers.providers.JsonRpcProvider('http://157.230.154.5:8046/');
+const provider = new ethers.providers.JsonRpcProvider('http://157.230.171.237:8068/');
 // const wallet = (new ethers.Wallet(PRIVATE_KEY)).connect(provider);
 const wallet = (ethers.Wallet.fromMnemonic(MNEMONIC)).connect(provider)
 const contract = new ethers.Contract(
