@@ -64,7 +64,7 @@ module.exports = {
       provider: function() {
         return new HDWalletProvider(
           mnemonic,
-          'http://157.230.154.5:8046/'
+          'http://157.230.171.237:8068/'
         );
       },
       network_id: '*',

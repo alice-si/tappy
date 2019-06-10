@@ -13,7 +13,9 @@ let State = {
     noLoaded: 0,
     noUnloaded: 0,
     totalLoaded: 0,
-    totalUnloaded: 0
+    totalUnloaded: 0,
+    totalDonated: 0,
+    totalOnCards: 0
   },
 
   addTransfer(transfer) {
@@ -25,6 +27,7 @@ let State = {
     var noUnloaded = 0;
     var totalUnloaded = 0;
     var totalLoaded = 0;
+    var totalDonated = 0;
 
     this.state.transfers.forEach((transfer) => {
       if (transfer.type == 'Meal awarded') {
@@ -40,12 +43,17 @@ let State = {
     Vue.set(this.state, 'noUnloaded', noUnloaded);
     Vue.set(this.state, 'totalLoaded', totalLoaded);
     Vue.set(this.state, 'totalUnloaded', totalUnloaded);
+    Vue.set(this.state, 'totalOnCards', totalLoaded - totalUnloaded);
+
+    Vue.set(this.state, 'totalDonated', this.state.totalLoaded + this.state.balance);
 
     Vue.set(this.state, 'transfers', this.state.transfers)
   },
 
   updateBalance(balance) {
-    Vue.set(this.state, 'balance', Number(web3.fromWei(balance, 'ether')))
+    Vue.set(this.state, 'balance', balance);
+    console.log("Balance: " + this.state.balance);
+    Vue.set(this.state, 'totalDonated', this.state.totalLoaded + this.state.balance);
   },
 
   startEventListening() {
@@ -59,9 +67,9 @@ let State = {
       })
 
       EventListener.listenForAnyEvents(async function() {
-        let newBalance = await Blockchain.getBalance()
-        newBalance = Number(newBalance.toPrecision(2));
-        //console.log(`New balance = ${newBalance}`)
+        let newBalance = await Blockchain.getBalance();
+        newBalance = Math.round(Number(web3.fromWei(newBalance, 'ether')));
+        console.log(`New balance = ${newBalance}`)
         prevThis.updateBalance(newBalance)
       })
     }

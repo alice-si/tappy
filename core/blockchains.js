@@ -9,8 +9,8 @@ function Blockchains() {
   const TOKEN_ADDRESS = {};
   const MANAGER_ADDRESS = {};
   TOKEN_ADDRESS['KOVAN'] = '0xc4375b7de8af5a38a93548eb8453a498222c4ff2';
-  TOKEN_ADDRESS['SKALE'] = '0xAF3A8bF2A8B4D8500bc1d23F118e4E77451d628d';
-  MANAGER_ADDRESS['SKALE'] = '0x14ABE122Ba65955a892412bbB89F083D100F2Ce5';
+  TOKEN_ADDRESS['SKALE'] = '0x0435115070D5A4954025B87A61f7369a181AD3f7';
+  MANAGER_ADDRESS['SKALE'] = '0xFd21DE119266Fc442cEFF47119B0dB0f530736d6';
 
   let mnemonic, infuraProject;
 
@@ -39,7 +39,7 @@ function Blockchains() {
   providers['KOVAN'] = new ethers.providers.InfuraProvider('kovan', '154fbc552a454311855d44e1e73ea46a');
   wallets['KOVAN'] = wallet.connect(providers['KOVAN']);
 
-  providers['SKALE'] = new ethers.providers.JsonRpcProvider('http://157.230.154.5:8046/');
+  providers['SKALE'] = new ethers.providers.JsonRpcProvider('http://157.230.171.237:8068/');
   wallets['SKALE'] = wallet.connect(providers['SKALE']);
 
   tokens['KOVAN'] = new ethers.Contract(TOKEN_ADDRESS['KOVAN'], tokenContractJson.abi, wallets['KOVAN']);
@@ -103,6 +103,12 @@ function Blockchains() {
   this.unLoad = function(cardId, secret, unLoader) {
     manager.unLoad(cardId, secret).then((tx) => {
       console.log("Unloaded card:  " + cardId + " : " + tx.hash);
+    });
+  }
+
+  this.checkAvailableAssets = function() {
+    manager.getAvailableAssets().then((val) => {
+      console.log(val.toString());
     });
   }
 

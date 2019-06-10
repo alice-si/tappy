@@ -3,7 +3,7 @@ const Blockchains = require('./blockchains.js');
 
 const SOURCE_ADDRESS = '0x55DbDAB581c4D5318901e9e35608444Cc2A3142d'; // User account
 
-const TARGET_ADDRESS = '0x14ABE122Ba65955a892412bbB89F083D100F2Ce5'; // Manager contract (SKALE)
+const TARGET_ADDRESS = '0xFd21DE119266Fc442cEFF47119B0dB0f530736d6'; // Manager contract (SKALE)
 
 
 const blockchains = new Blockchains();

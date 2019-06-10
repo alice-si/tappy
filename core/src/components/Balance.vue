@@ -56,13 +56,13 @@
     .card {
         border-radius: 4px;
         background-color: #fff;
-        margin-bottom: 30px;
+        margin-bottom: 10px;
         border: 1px solid rgba(0,0,0,.125);
     }
 
     .card-footer {
         background-color: transparent;
-        line-height: 30px;
+        line-height: 10px;
         border-top: none!important;
         font-size: 14px;
         padding: 0 15px 10px;
@@ -77,7 +77,7 @@
 
     .card-title {
         text-align: right;
-        margin-right: 20px;
+        margin-right: 10px;
         font-weight: 100;
     }
 
