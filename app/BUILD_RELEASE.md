@@ -93,8 +93,8 @@ Note that `--variant=release` is only available if you've set up signing as desc
 You can kill any running packager instances, since all your framework and JavaScript code is bundled in the APK's assets.
 
 ### Publishing to Google Play store
-Generated apk is located in `app/android/app/build/outputs/apk/release` folder.
-Go to `https://play.google.com/apps/publish` and create a new release.
+Generated apk is located in app/android/app/build/outputs/apk/release folder.
+Go to https://play.google.com/apps/publish and create a new release.
 Please note that app version updating could take about 1 hour in Google Play store.
 
 
