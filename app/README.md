@@ -28,7 +28,6 @@ react-native eject
 react-native link
 ```
 
-## To build release use the following tips
-- use `./gradlew app:assembleRelease` instead of `./gradlew assembleRelease`
-- https://facebook.github.io/react-native/docs/signed-apk-android
-- https://medium.com/@impaachu/react-native-android-release-build-crash-on-device-14f2c9eacf18
+## Build a release version
+Use [this](./BUILD_RELEASE.md) manual
+
