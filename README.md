@@ -1,7 +1,7 @@
 # Tappy makes you happy!
 
 ## What is tappy?
-Tappy makes it easy to load and unload crypto assets into any object equipped with an NFC tag: a card, a pin, a bracelet, a sticker, etc. Using Tappy doesn't require any technical skills whatsover. Simply tap a device to load the wallet with assets, and tap again to spend them. No smartphone, no gas payment, no metamask, no browser-cached keys, no QR code scan...users don't even need the Internet.
+Tappy makes it easy to load and unload crypto assets into any object equipped with an NFC tag: a card, a pin, a bracelet, a sticker, etc. Using Tappy doesn't require any technical skills whatsover. Simply tap a device to load the wallet with assets, and tap again to spend them. No smartphone, no gas payment, no metamask, no browser-cached keys, no QR code scan...users don't even need the Internet. Full [description/presentation](https://devpost.com/software/tappy).
 
 ## Tappy project contains the following elements
 - Bridge [core/bridge.js](core/bridge.js): a Dai bridge allowing the use of both Wyre and Skale.
