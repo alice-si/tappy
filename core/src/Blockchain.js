@@ -3,7 +3,8 @@ import { ethers } from 'ethers'
 import managerContractJson from '../build/contracts/Manager.json'
 
 // TODO set it to actual token adress
-const MANAGER_CONTRACT_ADDRESS = '0xFd21DE119266Fc442cEFF47119B0dB0f530736d6';
+//TOKEN: 0x9B9e49D6c05AF54c0799D22A7d8DDf326E9b6224
+const MANAGER_CONTRACT_ADDRESS = '0xFcc657A33c50de2E927dd27d6ccB6a52f599AC97';
 
 window.ethereum.enable();
 
@@ -32,10 +33,8 @@ export default {
   },
 
   async getBalance() {
-    //console.log("Getting balance");
-    const from = await this.account()
-    const balance = await this.contract().getAvailableAssets({ from })
-    console.log("get Balance: " + Number(balance));
+    const balance = await this.contract().getAvailableAssets();
+    console.log("Get Manager Balance: " + Number(balance));
     return  Number(balance)
 
   },

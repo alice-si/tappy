@@ -80,7 +80,7 @@ class CustomNFCReader extends Component {
                 }
             )
             .then(sub => {
-                this._stateChangedSubscription = sub; 
+                this._stateChangedSubscription = sub;
                 // remember to call this._stateChangedSubscription.remove()
                 // when you don't want to listen to this anymore
             })
@@ -91,6 +91,7 @@ class CustomNFCReader extends Component {
     }
 
     _processTag = tag => {
+        tag = "07773421"
         Toast.show("Nfc tag discovered: " + tag, Toast.SHORT)
         this.props.setNFCTagId(tag)
         this.props.updateCurrentPage('kittyKeySelect')
@@ -110,12 +111,12 @@ class CustomNFCReader extends Component {
             })
     }
 
-    componentDidMount() {        
+    componentDidMount() {
         this._startNfc()
         this._startDetection()
     }
 
-    render() {        
+    render() {
         return (
             <View style={styles.container}>
                 <TouchableWithoutFeedback
@@ -143,8 +144,8 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-    setNFCTagId: id => dispatch(ACTIONS.setNFCTagId(id)),  
-    updateCurrentPage: page => dispatch(ACTIONS.updateCurrentPage(page)), 
+    setNFCTagId: id => dispatch(ACTIONS.setNFCTagId(id)),
+    updateCurrentPage: page => dispatch(ACTIONS.updateCurrentPage(page)),
 })
 
 CustomNFCReader.propTypes = {

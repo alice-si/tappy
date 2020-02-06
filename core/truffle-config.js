@@ -64,7 +64,7 @@ module.exports = {
       provider: function() {
         return new HDWalletProvider(
           mnemonic,
-          'http://157.230.171.237:8068/'
+          'https://sip2211-1.skalenodes.com:10018'
         );
       },
       network_id: '*',
@@ -72,6 +72,18 @@ module.exports = {
       from: '0x55DbDAB581c4D5318901e9e35608444Cc2A3142d',
       skipDryRun: true,
     },
+    ganache: {
+      provider: function() {
+        return new HDWalletProvider(
+          mnemonic,
+          'http://ganache.demo.alice.si:80'
+      );
+      },
+      network_id: '*',
+      from: '0x9907a68e2cf1d29eb39b411a17e34738c5b9e6fa',
+      skipDryRun: true,
+    },
+
   },
 
   // Set default mocha options here, use special reporters etc.

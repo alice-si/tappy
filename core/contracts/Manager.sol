@@ -51,7 +51,7 @@ contract Manager is Ownable {
     }
 
     function load(bytes32 _hash, uint _amount) public onlyLoader {
-        require(holdings[_hash] == 0, "Card is already full");
+        //require(holdings[_hash] == 0, "Card is already full");
         require(getAvailableAssets() >= _amount, "Not enough assets left");
 
         holdings[_hash] = _amount;
